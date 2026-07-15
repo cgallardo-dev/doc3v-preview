@@ -29,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Aprende Guitarra con Doc 3V",
-  "description": "Método en español para tocar la guitarra desde cero o retomando, diseñado para adultos, con más de 100 tutoriales en video, herramientas gratuitas y un tutor disponible 24/7.",
+  "description": "Curso en español para tocar la guitarra desde cero o retomando, diseñado para adultos, con 19 lecciones en video, método digital incluido, más de 100 tutoriales gratuitos y un tutor disponible 24/7.",
   "inLanguage": "es",
   "url": "https://cgallardo-dev.github.io/doc3v-preview/",
   "provider": {
@@ -39,7 +39,7 @@
     "description": "Médico de profesión, músico de corazón."
   },
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "290", "bestRating": "5" },
-  "offers": { "@type": "Offer", "price": "2.99", "priceCurrency": "USD", "category": "Plan Pro mensual", "availability": "https://schema.org/InStock" }
+  "offers": { "@type": "Offer", "price": "59.99", "priceCurrency": "USD", "category": "Curso completo, pago único con acceso de por vida", "availability": "https://schema.org/InStock" }
 }
 </script>
 
@@ -224,19 +224,39 @@ section{padding:88px 0}
 .chip:disabled{opacity:.32;cursor:default}
 .bot-note{text-align:center;color:var(--cream-45);font-size:13.5px;margin-top:22px}
 
-/* PLANES */
-.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;align-items:stretch}
-.plan{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:30px 26px;display:flex;flex-direction:column;gap:8px}
-.plan.feat{border-color:var(--gold);background:linear-gradient(180deg,rgba(200,136,42,.08),var(--panel))}
-.plan .pn{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-weight:700;font-size:20px}
-.plan .pr{font-family:'Barlow C',var(--sans);font-weight:700;font-size:44px;line-height:1;margin:6px 0}
-.plan .pr small{font-size:15px;color:var(--cream-45);font-family:var(--sans);font-weight:400}
-.plan ul{list-style:none;margin:14px 0 22px;display:flex;flex-direction:column;gap:10px}
-.plan li{font-size:14.5px;color:var(--cream-70);display:flex;gap:10px}
-.plan li::before{content:"✓";color:var(--gold);font-weight:700}
-.plan .badge{align-self:flex-start;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px}
-.plan .btn{width:100%;margin-top:auto}
-@media(max-width:820px){.plans-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
+/* PRECIO */
+.price-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:44px;align-items:stretch}
+.price-main{border:1px solid var(--gold);border-radius:16px;background:linear-gradient(180deg,rgba(200,136,42,.1),var(--panel));padding:34px 32px;display:flex;flex-direction:column;gap:6px}
+.price-side{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:34px 32px;display:flex;flex-direction:column;gap:8px}
+.badge{align-self:flex-start;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:8px}
+.pn{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-weight:700;font-size:23px;line-height:1}
+.pn2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-45);font-weight:700}
+.price-row{display:flex;align-items:baseline;gap:14px;margin:8px 0 2px}
+.price-row2{display:flex;align-items:baseline;gap:12px;margin:6px 0}
+.was{font-family:'Barlow C',var(--sans);font-weight:600;font-size:26px;color:var(--cream-45);text-decoration:line-through}
+.now{font-family:'Barlow C',var(--sans);font-weight:700;font-size:58px;line-height:1;color:var(--cream)}
+.now small{font-size:18px;color:var(--cream-45);font-weight:400}
+.now2{font-family:'Barlow C',var(--sans);font-weight:700;font-size:38px;line-height:1;color:var(--cream)}
+.now2 small{font-size:14px;color:var(--cream-45);font-weight:400}
+.save{font-size:13.5px;color:var(--gold-bright);font-weight:600;letter-spacing:.02em}
+.price-main ul{list-style:none;margin:16px 0 20px;display:flex;flex-direction:column;gap:11px}
+.price-main li{font-size:15px;color:var(--cream-70);display:flex;gap:11px}
+.price-main li::before{content:"✓";color:var(--gold);font-weight:700}
+.price-main .btn,.price-side .btn{width:100%}
+.guarantee{font-size:13px;color:var(--cream-45);margin-top:12px;text-align:center}
+.price-side p{font-size:14.5px;color:var(--cream-70);margin-top:2px}
+.price-side .btn{margin-top:auto}
+.pays{margin-top:18px;text-align:center;font-size:12px;color:var(--cream-45);letter-spacing:.03em}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.fit-col{border:1px solid var(--line);border-radius:14px;padding:26px 24px;background:var(--panel)}
+.fit-col h4{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-size:17px;font-weight:700;margin-bottom:14px}
+.fit-col.yes h4{color:var(--green)}
+.fit-col.no h4{color:var(--cream-45)}
+.fit-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fit-col li{font-size:14.5px;color:var(--cream-70);display:flex;gap:10px}
+.fit-col.yes li::before{content:"✓";color:var(--green);font-weight:700}
+.fit-col.no li::before{content:"✕";color:var(--cream-45);font-weight:700}
+@media(max-width:820px){.price-grid{grid-template-columns:1fr}.fit{grid-template-columns:1fr}}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
@@ -431,34 +451,45 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
     </div>
   </section>
 
-  <!-- PLANES -->
+  <!-- PRECIO -->
   <section id="planes">
     <div class="wrap">
-      <div class="center reveal" style="max-width:50ch">
+      <div class="center reveal" style="max-width:52ch">
         <p class="eyebrow">Empieza hoy</p>
-        <div class="sec-head center"><h2>Elige por dónde <span class="g">empezar.</span></h2></div>
+        <div class="sec-head center"><h2>Un curso. Un pago. <span class="g">De por vida.</span></h2><p>Sin mensualidades y sin letra chica. Esto es exactamente lo que recibes.</p></div>
       </div>
-      <div class="plans-grid reveal">
-        <div class="plan">
-          <span class="badge">Gratis</span>
-          <p class="pn">Herramientas</p>
-          <p class="pr">$0</p>
-          <ul><li>Afinador y metrónomo</li><li>Diccionario de acordes</li><li>Tutoriales abiertos</li></ul>
-          <a class="btn btn-line" href="#herramientas">Usar gratis</a>
+      <div class="price-grid reveal">
+        <div class="price-main">
+          <span class="badge">Oferta de julio · 54% OFF</span>
+          <p class="pn">Curso completo de guitarra</p>
+          <div class="price-row"><span class="was">$130</span><span class="now">$59.99<small> USD</small></span></div>
+          <p class="save">Un solo pago · Acceso de por vida · Apenas $0.16 al día durante un año</p>
+          <ul>
+            <li>19 lecciones en video, a tu ritmo</li>
+            <li>Método digital incluido (valor $20, gratis)</li>
+            <li>Dudas respondidas a diario por Doc</li>
+            <li>Para principiantes absolutos y adultos sin experiencia</li>
+          </ul>
+          <a class="btn btn-gold" href="#">Empezar hoy — riesgo cero</a>
+          <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro con Hotmart.</p>
         </div>
-        <div class="plan feat">
-          <span class="badge">Recomendado</span>
-          <p class="pn">Plan Pro</p>
-          <p class="pr">$2.99<small> /mes</small></p>
-          <ul><li>Todas las herramientas Pro</li><li>Generador de ejercicios</li><li>Tutor 24/7 sin límite</li></ul>
-          <a class="btn btn-gold" href="#tutor">Empezar Pro</a>
+        <aside class="price-side">
+          <p class="pn2">¿Solo quieres la guía?</p>
+          <p class="pn">Método Doc 3V</p>
+          <div class="price-row2"><span class="was">$20</span><span class="now2">$9.99<small> USD</small></span></div>
+          <p>La guía digital descargable con toda la metodología: acordes, ritmos y canciones reales. No necesitas el curso.</p>
+          <a class="btn btn-line" href="#">Descargar el método</a>
+          <p class="pays">Aceptamos Visa · Mastercard · PayPal · Amex · Oxxo</p>
+        </aside>
+      </div>
+      <div class="fit reveal">
+        <div class="fit-col yes">
+          <h4>Este curso es para ti si…</h4>
+          <ul><li>Empiezas desde cero</li><li>Eres adulto sin experiencia</li><li>Tienes 8 años o más</li><li>Hablas español, de cualquier país</li></ul>
         </div>
-        <div class="plan">
-          <span class="badge">De por vida</span>
-          <p class="pn">Curso completo</p>
-          <p class="pr">Acceso<small> total</small></p>
-          <ul><li>Más de 100 tutoriales</li><li>Método paso a paso</li><li>Acceso de por vida</li></ul>
-          <a class="btn btn-line" href="#planes">Ver el curso</a>
+        <div class="fit-col no">
+          <h4>No es para ti si…</h4>
+          <ul><li>Buscas teoría avanzada desde el primer día</li><li>Ya tocas con fluidez y quieres nivel profesional</li><li>No vas a practicar al menos 15 minutos al día</li></ul>
         </div>
       </div>
     </div>
