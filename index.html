@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://cgallardo-dev.github.io/doc3v-preview/"><meta property="og:image" content="https://cgallardo-dev.github.io/doc3v-preview/assets/img/hero.jpg"><meta property="og:locale" content="es_LA">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://cgallardo-dev.github.io/doc3v-preview/assets/img/hero.jpg">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Doc 3V","jobTitle":"Músico y educador","description":"Médico de profesión, músico de corazón. Enseña guitarra en español.","url":"https://cgallardo-dev.github.io/doc3v-preview/","image":"https://cgallardo-dev.github.io/doc3v-preview/assets/img/hero.jpg"}
+{"@context":"https://schema.org","@type":"Course","name":"Aprende Guitarra con Doc 3V","description":"Método en español para tocar la guitarra desde cero, diseñado para adultos, con 19 lecciones en video, herramientas gratuitas y un tutor 24/7.","inLanguage":"es","provider":{"@type":"Person","name":"Doc 3V","description":"Médico de profesión, músico de corazón."},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"290","bestRating":"5"},"offers":{"@type":"Offer","price":"59.99","priceCurrency":"USD","availability":"https://schema.org/InStock"}}
 </script>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -31,14 +31,12 @@
       <a href="tutor.html">Tutor 24/7</a>
       <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
     </nav>
-    <div class="hdr-cta">
-      <a class="btn btn-line btn-sm" href="tutor.html">Probar el tutor</a>
-      <a class="btn btn-gold btn-sm" href="curso.html">Empezar</a>
-    </div>
+    <div class="hdr-cta"><a class="btn btn-line btn-sm" href="#tutor">Probar el tutor</a><a class="btn btn-gold btn-sm" href="curso.html">Empezar</a></div>
   </div>
 </header>
 
 <main>
+  <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -48,10 +46,7 @@
         <p class="with">con Doc 3V</p>
         <p class="quote">“Médico de profesión, músico de corazón.”</p>
         <p class="lead"><b>Toca tu primera canción en 2 semanas.</b> El método en español para tocar tus canciones favoritas, desde cero o retomando la guitarra.</p>
-        <div class="cta">
-          <a class="btn btn-gold" href="curso.html">Ver el curso</a>
-          <a class="btn btn-line" href="herramientas.html">Herramientas gratis</a>
-        </div>
+        <div class="cta"><a class="btn btn-gold" href="curso.html">Ver el curso</a><a class="btn btn-line" href="#herramientas">Herramientas gratis</a></div>
       </div>
       <div class="hero-photo"><img src="assets/img/hero.jpg" alt="Doc 3V con su guitarra frente a las luces de Quito de noche" width="1920" height="1200" fetchpriority="high"></div>
     </div>
@@ -66,49 +61,130 @@
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="reveal" style="max-width:52ch">
-        <p class="eyebrow">Explora</p>
-        <div class="sec-head"><h2>Todo en su <span class="g">lugar.</span></h2><p>Cada cosa tiene su página. Entra directo a lo que buscas, sin perderte.</p></div>
+  <!-- APRENDE (adultos) -->
+  <section id="aprende">
+    <div class="wrap split">
+      <div class="reveal">
+        <p class="eyebrow">El método, para adultos</p>
+        <div class="sec-head"><h2 class="k">El mito de la esponja infantil.</h2><h2>Tu cerebro <span class="g">sí puede.</span></h2><p>Te dijeron que si no empezaste de niño, ya es tarde. Es falso. El adulto no aprende peor: aprende distinto, y en algunas cosas mejor.</p></div>
+        <div class="rows">
+          <div class="row"><span class="n">01</span><div><h3>Aprendes con intención</h3><p>Sabes por qué estás ahí, y eso enfoca cada minuto.</p></div></div>
+          <div class="row"><span class="n">02</span><div><h3>Entiendes la teoría más rápido</h3><p>No memorizas: entiendes por qué un acorde suena como suena.</p></div></div>
+          <div class="row"><span class="n">03</span><div><h3>Tu frustración tiene contexto</h3><p>Ya aprendiste cosas difíciles antes. Sabes que la curva se pasa.</p></div></div>
+        </div>
+        <div class="cta"><a class="btn btn-line" href="aprende.html">Ver el método completo</a></div>
       </div>
-      <div class="explore reveal">
-        <a class="xcard wide" href="tutor.html">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <h3>Tutor 24/7 <span style="color:var(--gold);font-size:.7em">Nuevo</span></h3>
-          <p>Un asistente que responde tus dudas de guitarra al instante y te lleva al minuto exacto del video. Pruébalo.</p>
-          <span class="go">Hablar con el tutor →</span>
-        </a>
-        <a class="xcard" href="curso.html">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          <h3>El curso</h3><p>19 lecciones, de por vida. Toca tu primera canción en 2 semanas.</p><span class="go">Ver precio →</span>
-        </a>
-        <a class="xcard" href="herramientas.html">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M12 3l7 16H5z"/><path d="M12 7v8"/></svg>
-          <h3>Herramientas</h3><p>Metrónomo, acordes, afinador. Gratis y sin registro.</p><span class="go">Usar gratis →</span>
-        </a>
-        <a class="xcard" href="aprende.html">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          <h3>El método</h3><p>Por qué el adulto sí puede aprender, y cómo lo logras.</p><span class="go">Ver el método →</span>
-        </a>
-        <a class="xcard" href="musica.html">
-          <svg class="ic" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          <h3>Su música</h3><p>+2M de streams en Spotify. No solo enseña, toca.</p><span class="go">Escuchar →</span>
-        </a>
-        <a class="xcard" href="historia.html">
-          <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
-          <h3>Mi historia</h3><p>De la consulta médica al escenario, y de ahí a enseñarte.</p><span class="go">Conócelo →</span>
-        </a>
+      <figure class="reveal"><img src="assets/img/method.jpg" alt="Doc 3V sentado tocando su guitarra con la ciudad de fondo" width="1100" height="1375" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- HERRAMIENTAS + metrónomo -->
+  <section class="band" id="herramientas">
+    <div class="wrap">
+      <div class="reveal center" style="max-width:56ch"><div class="sec-head center"><h2>Herramientas <span class="g">gratis.</span> Sin registro.</h2><p>Empieza por el metrónomo: no te pide cuenta ni pago. Funciona aquí mismo, ahora.</p></div></div>
+      <div class="metro reveal" style="margin-top:44px">
+        <div class="metro-left">
+          <p class="metro-badge">Herramienta en vivo</p>
+          <h3>Metrónomo</h3>
+          <p>Ajusta el tempo, elige el compás o toca “TAP” al ritmo de tu canción. Mantén el tiempo mientras practicas.</p>
+          <span class="metro-free">● Gratis y sin registro. Pruébalo ahora.</span>
+        </div>
+        <div class="metro-right">
+          <div class="beats" id="beats" aria-hidden="true"></div>
+          <div class="bpm-display"><span id="bpmVal">100</span><small> BPM</small></div>
+          <input class="metro-slider" id="bpm" type="range" min="40" max="220" value="100" aria-label="Tempo en pulsos por minuto">
+          <div class="metro-row" id="presets"></div>
+          <div class="metro-row" id="sigs"></div>
+          <div class="metro-ctrls"><button class="btn btn-gold btn-sm" id="play" type="button">▶ Iniciar</button><button class="btn btn-line btn-sm" id="tap" type="button">TAP</button></div>
+        </div>
+      </div>
+      <div class="cta mid reveal"><a class="btn btn-line" href="herramientas.html">Ver todas las herramientas y acordes</a></div>
+    </div>
+  </section>
+
+  <!-- TUTOR (bot en vivo) -->
+  <section class="bot-wrap" id="tutor">
+    <div class="wrap">
+      <div class="bot-head reveal">
+        <span class="tag"><span class="dot"></span> Nuevo · Disponible 24/7</span>
+        <h2>Tu tutor, incluso a las <span class="g">2 de la mañana.</span></h2>
+        <p>Pregúntale cualquier duda de guitarra. Te responde al instante y te lleva al minuto exacto del video donde Doc lo explica. Pruébalo, es de verdad:</p>
+      </div>
+      <div class="chat reveal" role="region" aria-label="Tutor de guitarra">
+        <div class="chat-top">
+          <span class="av"><img src="assets/img/joy.jpg" alt="" width="40" height="40" loading="lazy"></span>
+          <div class="who"><b>Tutor de Doc 3V</b><span>● En línea</span></div>
+        </div>
+        <div class="chat-log" id="log" aria-live="polite">
+          <div class="msg bot">¡Hola! Soy el tutor de Doc. Estoy entrenado con sus más de 100 tutoriales. Cuéntame qué se te está trabando y te llevo al momento exacto donde Doc lo explica. 🎸</div>
+        </div>
+        <div class="chat-ask"><p class="label">Toca una pregunta para probar</p><div class="chips" id="chips"></div></div>
       </div>
     </div>
   </section>
 
+  <!-- MÚSICA -->
+  <section id="musica">
+    <div class="wrap split">
+      <div class="reveal">
+        <p class="eyebrow">Mi música</p>
+        <div class="sec-head"><h2>No solo <span class="g">enseño.</span> Toco.</h2><p>Más de 2 millones de reproducciones en Spotify. Aprendes con alguien que vive de la guitarra, no que solo habla de ella.</p></div>
+        <div class="cta"><a class="btn btn-line" href="musica.html">Escuchar más</a></div>
+      </div>
+      <div class="spot reveal"><iframe title="Música de Doc 3V en Spotify" loading="lazy" src="https://open.spotify.com/embed/artist/141kx79geq2cMsYly6aKgX?utm_source=generator&theme=0" allow="encrypted-media" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <!-- PRECIO -->
+  <section class="band" id="precio">
+    <div class="wrap">
+      <div class="reveal center" style="max-width:52ch"><div class="sec-head center"><h2>Un curso. Un pago. <span class="g">De por vida.</span></h2><p>Sin mensualidades y sin letra chica. Esto es exactamente lo que recibes.</p></div></div>
+      <div class="price-grid reveal">
+        <div class="price-main">
+          <span class="badge">Oferta de julio · 54% OFF</span>
+          <p class="pn">Curso completo de guitarra</p>
+          <div class="price-row"><span class="was">$130</span><span class="now">$59.99<small> USD</small></span></div>
+          <p class="save">Un solo pago · Acceso de por vida · Apenas $0.16 al día durante un año</p>
+          <ul>
+            <li>19 lecciones en video, a tu ritmo</li>
+            <li>Método digital incluido (valor $20, gratis)</li>
+            <li>Dudas respondidas a diario por Doc</li>
+            <li>Para principiantes absolutos y adultos sin experiencia</li>
+          </ul>
+          <a class="btn btn-gold" href="curso.html">Empezar hoy — riesgo cero</a>
+          <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro con Hotmart.</p>
+        </div>
+        <aside class="price-side">
+          <p class="pn2">¿Solo quieres la guía?</p>
+          <p class="pn">Método Doc 3V</p>
+          <div class="price-row2"><span class="was">$20</span><span class="now2">$9.99<small> USD</small></span></div>
+          <p>La guía digital descargable con toda la metodología: acordes, ritmos y canciones reales. No necesitas el curso.</p>
+          <a class="btn btn-line" href="curso.html">Ver el curso completo</a>
+          <p class="pays">Aceptamos Visa · Mastercard · PayPal · Amex · Oxxo</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA teaser -->
+  <section id="historia">
+    <div class="wrap split rev">
+      <figure class="reveal"><img src="assets/img/about.jpg" alt="Retrato de Doc 3V con lentes y guitarra en el centro histórico de Quito" width="1000" height="1000" loading="lazy"></figure>
+      <div class="reveal">
+        <p class="eyebrow">Sobre Doc</p>
+        <p class="k">De la consulta médica al escenario, y de ahí a enseñarte a ti.</p>
+        <p>Empezó como muchos de sus alumnos: con ganas y sin saber por dónde arrancar. Hoy lleva su música a más de 1.3 millones de personas, y dedica su método a una sola cosa: que toques de verdad.</p>
+        <div class="cta"><a class="btn btn-line" href="historia.html">Conoce mi historia</a><a class="btn btn-gold" href="curso.html">Empezar ahora</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
   <section class="band">
     <div class="wrap band-in reveal">
-      <p class="eyebrow" style="justify-content:center">Empieza hoy</p>
-      <h2>Deja de <span class="g">esperar.</span> Empieza a tocar.</h2>
-      <p>Un curso, un pago, de por vida. Con garantía de 7 días, 100% sin preguntas.</p>
-      <div class="cta mid"><a class="btn btn-gold" href="curso.html">Ver el curso — $59.99</a><a class="btn btn-line" href="tutor.html">Probar el tutor 24/7</a></div>
+      <p class="serif" style="font-size:clamp(22px,3vw,30px);color:var(--cream-70);margin-bottom:8px">¿Cuántos años llevas esperando?</p>
+      <h2>Hoy empiezas a <span class="g">tocar.</span></h2>
+      <div class="cta mid"><a class="btn btn-gold" href="curso.html">Ver el curso — $59.99</a><a class="btn btn-line" href="#tutor">Probar el tutor 24/7</a></div>
     </div>
   </section>
 </main>
