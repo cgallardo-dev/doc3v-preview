@@ -78,11 +78,19 @@
     </div>
   </section>
 
-  <!-- HERRAMIENTAS + metrónomo -->
+  <!-- HERRAMIENTAS + metrónomo + acordes -->
   <section class="band" id="herramientas">
     <div class="wrap">
-      <div class="reveal center" style="max-width:56ch"><div class="sec-head center"><h2>Herramientas <span class="g">gratis.</span> Sin registro.</h2><p>Empieza por el metrónomo: no te pide cuenta ni pago. Funciona aquí mismo, ahora.</p></div></div>
-      <div class="metro reveal" style="margin-top:44px">
+      <div class="reveal center" style="max-width:56ch"><div class="sec-head center"><h2>Herramientas <span class="g">gratis.</span> Sin registro.</h2><p>Afinador, acordes, metrónomo. Empieza por el metrónomo: funciona aquí mismo, sin pedirte cuenta ni pago.</p></div></div>
+      <div class="tools-grid reveal" style="margin-top:40px">
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><circle cx="12" cy="18" r="3"/><path d="M8 7l8 0"/></svg><b>Afinador</b><span>Por micrófono</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M12 4v16M16 4v16"/></svg><b>Acordes</b><span>Diccionario</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><b>Círculos</b><span>de acordes</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M5 3v18l14-9z"/></svg><b>Tutoriales</b><span>100+ videos</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg><b>Detector BPM</b><span>Del tempo</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M12 3l7 16H5z"/><path d="M12 7v8"/></svg><b>Metrónomo</b><span>Aquí abajo ↓</span></div>
+      </div>
+      <div class="metro reveal">
         <div class="metro-left">
           <p class="metro-badge">Herramienta en vivo</p>
           <h3>Metrónomo</h3>
@@ -98,17 +106,32 @@
           <div class="metro-ctrls"><button class="btn btn-gold btn-sm" id="play" type="button">▶ Iniciar</button><button class="btn btn-line btn-sm" id="tap" type="button">TAP</button></div>
         </div>
       </div>
-      <div class="cta mid reveal"><a class="btn btn-line" href="herramientas.html">Ver todas las herramientas y acordes</a></div>
     </div>
   </section>
 
-  <!-- TUTOR (bot en vivo) -->
-  <section class="bot-wrap" id="tutor">
+  <!-- ACORDES -->
+  <section id="acordes">
     <div class="wrap">
-      <div class="bot-head reveal">
-        <span class="tag"><span class="dot"></span> Nuevo · Disponible 24/7</span>
-        <h2>Tu tutor, incluso a las <span class="g">2 de la mañana.</span></h2>
-        <p>Pregúntale cualquier duda de guitarra. Te responde al instante y te lleva al minuto exacto del video donde Doc lo explica. Pruébalo, es de verdad:</p>
+      <div class="reveal center" style="max-width:52ch"><div class="sec-head center"><h2>Tus primeros <span class="g">acordes.</span></h2><p>Con los que empiezas todo. Cada uno, con la posición exacta de los dedos.</p></div></div>
+      <div class="chord-grid reveal" id="chordGrid"></div>
+      <div class="prog reveal" style="max-width:760px;margin-left:auto;margin-right:auto">
+        <p class="lbl">La progresión mágica</p>
+        <p class="seq">Am <span>·</span> F <span>·</span> C <span>·</span> G</p>
+        <p>Con estos cuatro, en este orden, ya suenan cientos de canciones. Es lo primero que aprendes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUTOR (bot en vivo, split) -->
+  <section class="band bot-wrap" id="tutor">
+    <div class="wrap bot-split">
+      <div class="reveal">
+        <span class="tag" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(63,208,122,.18)"></span> Nuevo · 24/7</span>
+        <div class="sec-head"><h2>Tu tutor, incluso a las <span class="g">2 a.m.</span></h2><p>La duda que hoy te frena y te hace dejar la guitarra, mañana la resuelves en segundos. Pruébalo aquí al lado, es de verdad. →</p></div>
+        <div class="bot-benefits">
+          <div class="brow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><h3>A cualquier hora</h3><p>Practicas de noche o en tu único rato libre. El tutor no cierra.</p></div></div>
+          <div class="brow"><svg viewBox="0 0 24 24"><path d="M5 3v18l14-9z"/></svg><div><h3>Te lleva al minuto exacto</h3><p>No una respuesta genérica: el segundo del video donde Doc lo enseña.</p></div></div>
+        </div>
       </div>
       <div class="chat reveal" role="region" aria-label="Tutor de guitarra">
         <div class="chat-top">
@@ -116,9 +139,11 @@
           <div class="who"><b>Tutor de Doc 3V</b><span>● En línea</span></div>
         </div>
         <div class="chat-log" id="log" aria-live="polite">
-          <div class="msg bot">¡Hola! Soy el tutor de Doc. Estoy entrenado con sus más de 100 tutoriales. Cuéntame qué se te está trabando y te llevo al momento exacto donde Doc lo explica. 🎸</div>
+          <div class="msg bot">¡Hola! Soy el tutor de Doc. Cuéntame qué se te está trabando y te llevo al momento exacto donde él lo explica. 🎸</div>
+          <div class="msg user">¿Por dónde empiezo si nunca toqué?</div>
+          <div class="msg bot">Perfecto, empezamos de cero. Antes que nada, aprende a sostener bien la guitarra y a leer un diagrama de acordes. Doc lo muestra pasito a pasito acá:<span class="cite" role="button" tabindex="0" title="Abre el video en el minuto exacto"><span class="play" aria-hidden="true">▶</span> Ver en “Tu primera clase” · 1:15</span></div>
         </div>
-        <div class="chat-ask"><p class="label">Toca una pregunta para probar</p><div class="chips" id="chips"></div></div>
+        <div class="chat-ask"><p class="label">Sigue preguntando</p><div class="chips" id="chips"></div></div>
       </div>
     </div>
   </section>
@@ -158,9 +183,14 @@
           <p class="pn2">¿Solo quieres la guía?</p>
           <p class="pn">Método Doc 3V</p>
           <div class="price-row2"><span class="was">$20</span><span class="now2">$9.99<small> USD</small></span></div>
-          <p>La guía digital descargable con toda la metodología: acordes, ritmos y canciones reales. No necesitas el curso.</p>
-          <a class="btn btn-line" href="curso.html">Ver el curso completo</a>
-          <p class="pays">Aceptamos Visa · Mastercard · PayPal · Amex · Oxxo</p>
+          <p>La guía digital descargable con toda la metodología. No necesitas el curso.</p>
+          <ul>
+            <li>Descarga inmediata</li>
+            <li>Acordes, ritmos y canciones reales</li>
+            <li>Tuyo para siempre, sin mensualidad</li>
+          </ul>
+          <a class="btn btn-line" href="curso.html">Descargar el método</a>
+          <p class="pays">Visa · Mastercard · PayPal · Amex · Oxxo</p>
         </aside>
       </div>
     </div>
