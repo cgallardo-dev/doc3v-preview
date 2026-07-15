@@ -6,52 +6,40 @@
 <title>Doc 3V | Aprende guitarra desde cero, toca tu primera canción en 2 semanas</title>
 <!-- Vista previa privada para el titular. No indexar mientras es propuesta. -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Aprende guitarra con Doc 3V, médico de profesión y músico de corazón. El método en español para tocar tus canciones favoritas desde cero o retomando, con más de 100 tutoriales y un tutor que te responde 24/7.">
+<meta name="description" content="Aprende guitarra con Doc 3V, médico de profesión y músico de corazón. El método en español para adultos, con más de 100 tutoriales, herramientas gratis (afinador, metrónomo, acordes) y un tutor que te responde 24/7.">
 <meta name="author" content="Doc 3V">
 <link rel="canonical" href="https://cgallardo-dev.github.io/doc3v-preview/">
 <meta name="theme-color" content="#0A0A0C">
 <link rel="icon" href="assets/img/logo.png">
 
-<!-- Open Graph: la tarjeta con foto que aparece al compartir en WhatsApp / Instagram -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Doc 3V">
 <meta property="og:title" content="Aprende guitarra con Doc 3V">
-<meta property="og:description" content="Toca tu primera canción en 2 semanas. El método en español, con más de 100 tutoriales y un tutor que te responde 24/7.">
+<meta property="og:description" content="El método en español para adultos. Herramientas gratis, más de 100 tutoriales y un tutor que te responde 24/7.">
 <meta property="og:url" content="https://cgallardo-dev.github.io/doc3v-preview/">
 <meta property="og:image" content="https://cgallardo-dev.github.io/doc3v-preview/assets/img/hero.jpg">
 <meta property="og:locale" content="es_LA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Aprende guitarra con Doc 3V">
-<meta name="twitter:description" content="Toca tu primera canción en 2 semanas. Método en español + tutor 24/7.">
+<meta name="twitter:description" content="El método en español para adultos. Herramientas gratis + tutor 24/7.">
 <meta name="twitter:image" content="https://cgallardo-dev.github.io/doc3v-preview/assets/img/hero.jpg">
 
-<!-- Datos estructurados: así Google entiende que esto es un curso con calificación -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Aprende Guitarra con Doc 3V",
-  "description": "Método en español para tocar la guitarra desde cero o retomando, con más de 100 tutoriales en video y un tutor disponible 24/7.",
+  "description": "Método en español para tocar la guitarra desde cero o retomando, diseñado para adultos, con más de 100 tutoriales en video, herramientas gratuitas y un tutor disponible 24/7.",
   "inLanguage": "es",
   "url": "https://cgallardo-dev.github.io/doc3v-preview/",
   "provider": {
     "@type": "Person",
     "name": "Doc 3V",
     "jobTitle": "Músico y educador",
-    "description": "Médico de profesión, músico de corazón.",
-    "sameAs": ["https://open.spotify.com/", "https://www.instagram.com/doc.3v/"]
+    "description": "Médico de profesión, músico de corazón."
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "ratingCount": "290",
-    "bestRating": "5"
-  },
-  "offers": {
-    "@type": "Offer",
-    "category": "Curso de guitarra en línea",
-    "availability": "https://schema.org/InStock"
-  }
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "290", "bestRating": "5" },
+  "offers": { "@type": "Offer", "price": "2.99", "priceCurrency": "USD", "category": "Plan Pro mensual", "availability": "https://schema.org/InStock" }
 }
 </script>
 
@@ -61,57 +49,41 @@
 @font-face{font-family:'Cormorant';font-weight:500 600;font-style:italic;font-display:swap;src:url('assets/fonts/cormorant-italic.woff2') format('woff2')}
 
 :root{
-  --ink:#0A0A0C;
-  --ink-2:#101015;
-  --panel:#15151C;
-  --panel-2:#1B1B24;
-  --cream:#F9F5EE;
-  --cream-70:rgba(249,245,238,.72);
-  --cream-45:rgba(249,245,238,.46);
-  --gold:#C8882A;
-  --gold-bright:#E0A23B;
-  --line:rgba(249,245,238,.12);
-  --line-2:rgba(249,245,238,.07);
-  --maxw:1240px;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --ink:#0A0A0C;--ink-2:#101015;--panel:#15151C;--panel-2:#1B1B24;
+  --cream:#F9F5EE;--cream-70:rgba(249,245,238,.72);--cream-45:rgba(249,245,238,.46);
+  --gold:#C8882A;--gold-bright:#E0A23B;--green:#3fd07a;
+  --line:rgba(249,245,238,.12);--line-2:rgba(249,245,238,.07);
+  --maxw:1240px;--ease:cubic-bezier(.16,1,.3,1);
   --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--sans);background:var(--ink);color:var(--cream);
-  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
+body{font-family:var(--sans);background:var(--ink);color:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 ::selection{background:var(--gold);color:var(--ink)}
-
 .disp{font-family:'Barlow C',var(--sans);text-transform:uppercase;letter-spacing:.01em;line-height:.92;font-weight:700}
 .serif{font-family:'Cormorant',Georgia,serif;font-style:italic;font-weight:500}
 
-/* top announcement */
 .ann{background:var(--gold);color:var(--ink);text-align:center;font-size:13px;font-weight:700;letter-spacing:.04em;padding:9px 16px;text-transform:uppercase}
 .ann a{text-decoration:underline;text-underline-offset:2px}
 
-/* header */
 header{position:sticky;top:0;z-index:50;background:rgba(10,10,12,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-2)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:70px;gap:24px}
 .brand{display:flex;align-items:center;gap:11px;font-family:'Cormorant',serif;font-style:italic;font-size:24px;color:var(--cream)}
 .brand img{height:34px;width:auto}
-nav.main{display:flex;gap:30px}
+nav.main{display:flex;gap:26px}
 nav.main a{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-70);transition:color .2s}
 nav.main a:hover{color:var(--gold-bright)}
-@media(max-width:900px){nav.main{display:none}}
+@media(max-width:960px){nav.main{display:none}}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:50px;padding:0 26px;border-radius:2px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:transform .12s var(--ease),background .2s,color .2s,border-color .2s;white-space:nowrap}
 .btn:active{transform:translateY(1px)}
 .btn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
-.btn-gold{background:var(--gold);color:var(--ink)}
-.btn-gold:hover{background:var(--gold-bright)}
-.btn-line{background:transparent;color:var(--cream);border-color:var(--line)}
-.btn-line:hover{border-color:var(--gold);color:var(--gold-bright)}
+.btn-gold{background:var(--gold);color:var(--ink)}.btn-gold:hover{background:var(--gold-bright)}
+.btn-line{background:transparent;color:var(--cream);border-color:var(--line)}.btn-line:hover{border-color:var(--gold);color:var(--gold-bright)}
 .btn-sm{height:42px;padding:0 18px;font-size:12.5px}
 .hdr-cta{display:flex;align-items:center;gap:14px}
 @media(max-width:560px){.hdr-cta .btn-line{display:none}}
@@ -119,29 +91,22 @@ nav.main a:hover{color:var(--gold-bright)}
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold)}
 
-/* hero */
-.hero{position:relative;padding:64px 0 0}
+.hero{position:relative;padding:60px 0 0}
 .hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:48px;align-items:center}
 .hero .serif-k{font-size:clamp(30px,4vw,52px);color:var(--cream);display:block;margin:16px 0 -6px;line-height:1}
 .hero h1{margin:0}
 .hero .big{font-size:clamp(76px,13vw,168px);color:var(--gold);display:block}
 .hero .with{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(24px,3vw,34px);color:var(--cream);margin-top:6px}
-.hero .quote{color:var(--cream-45);font-family:'Cormorant',serif;font-style:italic;font-size:19px;margin-top:18px}
-.hero .lead{font-size:18px;color:var(--cream-70);max-width:42ch;margin-top:20px}
+.hero .quote{color:var(--cream-45);font-family:'Cormorant',serif;font-style:italic;font-size:19px;margin-top:16px}
+.hero .lead{font-size:18px;color:var(--cream-70);max-width:44ch;margin-top:18px}
 .hero .lead b{color:var(--cream);font-weight:700}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
 .hero-photo{position:relative;aspect-ratio:16/11;border-radius:3px;overflow:hidden;border:1px solid var(--line)}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,transparent 22%),linear-gradient(0deg,rgba(10,10,12,.35),transparent 40%)}
-@media(max-width:880px){
-  .hero{padding:36px 0 0}
-  .hero-grid{grid-template-columns:1fr;gap:28px}
-  .hero-photo{order:-1;aspect-ratio:4/3}
-  .hero-photo::after{background:linear-gradient(0deg,var(--ink) 2%,transparent 45%)}
-}
+@media(max-width:880px){.hero{padding:34px 0 0}.hero-grid{grid-template-columns:1fr;gap:26px}.hero-photo{order:-1;aspect-ratio:4/3}.hero-photo::after{background:linear-gradient(0deg,var(--ink) 2%,transparent 45%)}}
 
-/* stats */
-.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:56px;background:linear-gradient(180deg,var(--ink-2),var(--ink))}
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:52px;background:linear-gradient(180deg,var(--ink-2),var(--ink))}
 .stats-in{display:grid;grid-template-columns:repeat(5,1fr)}
 .stat{padding:26px 20px;text-align:center;border-right:1px solid var(--line-2)}
 .stat:last-child{border-right:none}
@@ -150,41 +115,95 @@ nav.main a:hover{color:var(--gold-bright)}
 .stat b .u{color:var(--gold)}
 @media(max-width:760px){.stats-in{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat{border-bottom:1px solid var(--line-2)}.stat:nth-child(5){grid-column:1/-1}}
 
-/* sections */
-section{padding:92px 0}
-.sec-head{max-width:52ch}
-.sec-head h2{font-family:'Barlow C',var(--sans);font-weight:700;text-transform:uppercase;font-size:clamp(34px,5vw,60px);line-height:.98;letter-spacing:.005em}
+section{padding:88px 0}
+.sec-head{max-width:54ch}
+.sec-head h2{font-family:'Barlow C',var(--sans);font-weight:700;text-transform:uppercase;font-size:clamp(34px,5vw,58px);line-height:.98;letter-spacing:.005em}
 .sec-head h2 .g{color:var(--gold)}
 .sec-head .k{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(26px,3.4vw,38px);color:var(--cream-70);font-weight:500;text-transform:none}
-.sec-head p{color:var(--cream-70);font-size:18px;margin-top:18px}
+.sec-head p{color:var(--cream-70);font-size:18px;margin-top:16px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+.center .eyebrow{justify-content:center}
 
-/* method */
-.method{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.method figure{border-radius:3px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5}
-.method figure img{width:100%;height:100%;object-fit:cover}
-.steps{margin-top:34px;display:flex;flex-direction:column;gap:2px}
-.step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line)}
-.step:last-child{border-bottom:1px solid var(--line)}
-.step .n{font-family:'Barlow C',var(--sans);font-weight:700;font-size:26px;color:var(--gold);line-height:1}
-.step h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
-.step p{color:var(--cream-70);font-size:15.5px;margin-top:5px}
-@media(max-width:880px){.method{grid-template-columns:1fr;gap:34px}.method figure{aspect-ratio:4/3;order:-1}}
+/* HERRAMIENTAS */
+.tools{background:linear-gradient(180deg,var(--ink),var(--ink-2))}
+.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:40px}
+.tool{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-align:center;transition:transform .2s var(--ease),border-color .2s}
+.tool:hover{transform:translateY(-4px);border-color:var(--gold)}
+.tool svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.6}
+.tool b{font-size:13.5px;font-weight:600}
+.tool span{font-size:11px;color:var(--cream-45)}
+@media(max-width:900px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* BOT — la pieza central */
+/* METRÓNOMO funcional */
+.metro{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.metro-left{padding:34px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.metro-badge{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.metro-left h3{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-size:30px;font-weight:700;line-height:1}
+.metro-left p{color:var(--cream-70);font-size:14.5px;margin-top:10px;max-width:34ch}
+.metro-free{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--green);font-weight:600}
+.metro-right{padding:30px 32px;display:flex;flex-direction:column;align-items:center;gap:18px;background:var(--panel-2)}
+.beats{display:flex;gap:10px;height:26px;align-items:center}
+.beat{width:14px;height:14px;border-radius:50%;background:var(--line);transition:transform .06s,background .06s}
+.beat.acc{width:16px;height:16px}
+.beat.on{background:var(--gold-bright);transform:scale(1.5)}
+.bpm-display{font-family:'Barlow C',var(--sans);font-weight:700;font-size:64px;line-height:1;color:var(--cream)}
+.bpm-display small{font-size:16px;color:var(--cream-45);letter-spacing:.1em}
+.metro-slider{width:100%;max-width:320px;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--line);outline:none}
+.metro-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--panel-2)}
+.metro-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--panel-2)}
+.metro-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pill{font-size:12px;font-weight:600;color:var(--cream-70);background:transparent;border:1px solid var(--line);border-radius:16px;padding:7px 12px;cursor:pointer;transition:.2s}
+.pill:hover,.pill.sel{border-color:var(--gold);color:var(--gold-bright)}
+.metro-ctrls{display:flex;gap:10px;align-items:center}
+@media(max-width:760px){.metro{grid-template-columns:1fr}.metro-left{border-right:none;border-bottom:1px solid var(--line)}}
+
+/* APRENDE adultos */
+.adult{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.adult figure{border-radius:3px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5}
+.adult figure img{width:100%;height:100%;object-fit:cover}
+.adv{margin-top:30px;display:flex;flex-direction:column;gap:2px}
+.adv .row{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.adv .row:last-child{border-bottom:1px solid var(--line)}
+.adv .n{font-family:'Barlow C',var(--sans);font-weight:700;font-size:22px;color:var(--gold);line-height:1.1}
+.adv h3{font-size:18px;font-weight:700}
+.adv p{color:var(--cream-70);font-size:15px;margin-top:4px}
+@media(max-width:880px){.adult{grid-template-columns:1fr;gap:30px}.adult figure{aspect-ratio:4/3;order:-1}}
+
+/* ACORDES */
+.chords{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.chord-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.chord{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:22px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.chord svg{width:96px;height:120px}
+.chord b{font-family:'Barlow C',var(--sans);font-weight:700;font-size:22px}
+.chord span{font-family:'Space Mono',monospace;font-size:12px;color:var(--cream-45);letter-spacing:.05em}
+.prog{margin-top:30px;text-align:center;padding:26px;border:1px dashed var(--line);border-radius:12px}
+.prog .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.prog .seq{font-family:'Barlow C',var(--sans);font-weight:700;font-size:clamp(28px,4vw,42px);margin-top:8px;letter-spacing:.04em}
+.prog .seq span{color:var(--gold)}
+.prog p{color:var(--cream-70);font-size:15px;margin-top:8px}
+@media(max-width:820px){.chord-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* MÚSICA */
+.music{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+.music .spot{border-radius:14px;overflow:hidden;border:1px solid var(--line);min-height:352px;background:var(--panel)}
+.music iframe{width:100%;height:352px;border:0;display:block}
+@media(max-width:880px){.music{grid-template-columns:1fr;gap:30px}}
+
+/* BOT */
 .bot{background:radial-gradient(120% 90% at 50% -10%,rgba(200,136,42,.10),transparent 55%),var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.bot-head{text-align:center;max-width:44ch;margin:0 auto 44px}
+.bot-head{text-align:center;max-width:46ch;margin:0 auto 40px}
 .bot-head h2{font-family:'Barlow C',var(--sans);font-weight:700;text-transform:uppercase;font-size:clamp(32px,4.6vw,54px);line-height:1}
 .bot-head h2 .g{color:var(--gold)}
 .bot-head p{color:var(--cream-70);font-size:17.5px;margin-top:14px}
-.bot-head .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:600}
-.bot-head .tag .dot{width:8px;height:8px;border-radius:50%;background:#3fd07a;box-shadow:0 0 0 4px rgba(63,208,122,.18)}
-
+.bot-head .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600}
+.bot-head .tag .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(63,208,122,.18)}
 .chat{max-width:720px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
 .chat-top{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--panel-2)}
-.chat-top .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2a1f0f,#000);border:1px solid var(--gold);display:grid;place-items:center;overflow:hidden}
+.chat-top .av{width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);overflow:hidden}
 .chat-top .av img{width:100%;height:100%;object-fit:cover}
 .chat-top .who b{display:block;font-size:15px;font-weight:700}
-.chat-top .who span{display:block;font-size:12px;color:#3fd07a;letter-spacing:.02em}
+.chat-top .who span{display:block;font-size:12px;color:var(--green)}
 .chat-log{padding:22px 20px;display:flex;flex-direction:column;gap:14px;min-height:280px;max-height:440px;overflow-y:auto}
 .msg{max-width:82%;padding:13px 16px;border-radius:14px;font-size:15px;line-height:1.55;animation:pop .3s var(--ease)}
 @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -200,27 +219,39 @@ section{padding:92px 0}
 .chat-ask{padding:16px 20px;border-top:1px solid var(--line);background:var(--panel-2)}
 .chat-ask .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-45);margin-bottom:11px}
 .chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{font-size:13.5px;font-weight:600;color:var(--cream);background:transparent;border:1px solid var(--line);border-radius:20px;padding:9px 15px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;text-align:left}
+.chip{font-size:13.5px;font-weight:600;color:var(--cream);background:transparent;border:1px solid var(--line);border-radius:20px;padding:9px 15px;cursor:pointer;transition:.2s;text-align:left}
 .chip:hover:not(:disabled){border-color:var(--gold);color:var(--gold-bright)}
 .chip:disabled{opacity:.32;cursor:default}
 .bot-note{text-align:center;color:var(--cream-45);font-size:13.5px;margin-top:22px}
 
-/* about */
+/* PLANES */
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;align-items:stretch}
+.plan{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:30px 26px;display:flex;flex-direction:column;gap:8px}
+.plan.feat{border-color:var(--gold);background:linear-gradient(180deg,rgba(200,136,42,.08),var(--panel))}
+.plan .pn{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-weight:700;font-size:20px}
+.plan .pr{font-family:'Barlow C',var(--sans);font-weight:700;font-size:44px;line-height:1;margin:6px 0}
+.plan .pr small{font-size:15px;color:var(--cream-45);font-family:var(--sans);font-weight:400}
+.plan ul{list-style:none;margin:14px 0 22px;display:flex;flex-direction:column;gap:10px}
+.plan li{font-size:14.5px;color:var(--cream-70);display:flex;gap:10px}
+.plan li::before{content:"✓";color:var(--gold);font-weight:700}
+.plan .badge{align-self:flex-start;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:2px}
+.plan .btn{width:100%;margin-top:auto}
+@media(max-width:820px){.plans-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
+
+/* ABOUT */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
 .about figure{border-radius:3px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1/1}
 .about figure img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .about .k{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(28px,3.6vw,42px);color:var(--cream);line-height:1.2}
-.about p{color:var(--cream-70);font-size:17px;margin-top:18px;max-width:52ch}
+.about p{color:var(--cream-70);font-size:17px;margin-top:16px;max-width:52ch}
 @media(max-width:880px){.about{grid-template-columns:1fr;gap:30px}.about figure{aspect-ratio:4/3;max-width:420px}}
 
-/* final cta */
 .final{text-align:center;background:radial-gradient(90% 120% at 50% 120%,rgba(200,136,42,.14),transparent 60%)}
 .final h2{font-family:'Barlow C',var(--sans);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6vw,76px);line-height:.96}
 .final h2 .g{color:var(--gold)}
 .final .k{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(22px,3vw,30px);color:var(--cream-70);margin-bottom:10px}
-.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
 
-/* footer */
 footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink-2)}
 .f-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
 .f-brand{font-family:'Cormorant',serif;font-style:italic;font-size:26px}
@@ -233,30 +264,26 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
 
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}.reveal{opacity:1;transform:none}
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<div class="ann">Curso de guitarra Doc 3V · Acceso de por vida · <a href="#curso">Ver el método</a></div>
+<div class="ann">Curso de guitarra Doc 3V · Acceso de por vida · <a href="#planes">Ver precio</a></div>
 
 <header>
   <div class="wrap bar">
-    <a class="brand" href="#top" aria-label="Doc 3V, inicio">
-      <img src="assets/img/logo.png" alt="" width="34" height="34">
-      Doc 3V
-    </a>
+    <a class="brand" href="#top" aria-label="Doc 3V, inicio"><img src="assets/img/logo.png" alt="" width="34" height="34"> Doc 3V</a>
     <nav class="main" aria-label="Principal">
-      <a href="#curso">El método</a>
+      <a href="#musica">Música</a>
+      <a href="#aprende">Aprende</a>
+      <a href="#herramientas">Herramientas</a>
       <a href="#tutor">Tutor 24/7</a>
-      <a href="#doc">Sobre Doc</a>
+      <a href="#planes">Curso</a>
     </nav>
     <div class="hdr-cta">
       <a class="btn btn-line btn-sm" href="#tutor">Probar el tutor</a>
-      <a class="btn btn-gold btn-sm" href="#curso">Empezar</a>
+      <a class="btn btn-gold btn-sm" href="#planes">Empezar</a>
     </div>
   </div>
 </header>
@@ -272,18 +299,16 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
         <h1><span class="disp big">Guitarra</span></h1>
         <p class="with">con Doc 3V</p>
         <p class="quote">“Médico de profesión, músico de corazón.”</p>
-        <p class="lead"><b>Toca tu primera canción en 2 semanas.</b> El método en español para tocar tus canciones favoritas, desde cero o retomando la guitarra.</p>
+        <p class="lead"><b>Toca tu primera canción en 2 semanas.</b> El método en español para tocar tus canciones favoritas, desde cero o retomando la guitarra. ¿Cuántos años llevas esperando?</p>
         <div class="cta">
-          <a class="btn btn-gold" href="#curso">Ver el curso</a>
-          <a class="btn btn-line" href="#tutor">Probar el tutor 24/7</a>
+          <a class="btn btn-gold" href="#planes">Ver el curso</a>
+          <a class="btn btn-line" href="#herramientas">Herramientas gratis</a>
         </div>
       </div>
       <div class="hero-photo">
         <img src="assets/img/hero.jpg" alt="Doc 3V con su guitarra frente a las luces de Quito de noche" width="1920" height="1200" fetchpriority="high">
       </div>
     </div>
-
-    <!-- STATS -->
     <div class="stats">
       <div class="wrap stats-in">
         <div class="stat"><b><span class="u">+</span>1.3M</b><span>Seguidores</span></div>
@@ -295,25 +320,89 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
     </div>
   </section>
 
-  <!-- MÉTODO -->
-  <section id="curso">
-    <div class="wrap method">
-      <div class="reveal">
-        <p class="eyebrow">El método</p>
-        <div class="sec-head">
-          <h2 class="k">No aprendes teoría.</h2>
-          <h2>Tocas <span class="g">canciones.</span></h2>
-          <p>La mayoría abandona la guitarra en el primer mes porque empieza por lo aburrido. Aquí empiezas tocando, y la teoría llega sola cuando ya te enganchaste.</p>
+  <!-- HERRAMIENTAS -->
+  <section class="tools" id="herramientas">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:56ch">
+        <p class="eyebrow">Herramientas para guitarristas</p>
+        <div class="sec-head center"><h2>Afina, practica y <span class="g">toca.</span></h2><p>Todas gratis, sin registro ni pagos. Empieza por el metrónomo: funciona aquí mismo, ahora.</p></div>
+      </div>
+      <div class="tools-grid reveal">
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><circle cx="12" cy="18" r="3"/><path d="M8 7l8 0"/></svg><b>Afinador</b><span>Por micrófono</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M12 4v16M16 4v16"/></svg><b>Acordes</b><span>Diccionario</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><b>Círculos</b><span>de acordes</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M5 3v18l14-9z"/></svg><b>Tutoriales</b><span>100+ videos</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg><b>Detector BPM</b><span>Del tempo</span></div>
+        <div class="tool"><svg viewBox="0 0 24 24"><path d="M12 3l7 16H5z"/><path d="M12 7v8"/></svg><b>Metrónomo</b><span>Aquí abajo ↓</span></div>
+      </div>
+
+      <!-- Metrónomo REAL -->
+      <div class="metro reveal">
+        <div class="metro-left">
+          <p class="metro-badge">Herramienta en vivo</p>
+          <h3>Metrónomo</h3>
+          <p>Mantén el tiempo mientras practicas. Ajusta el tempo, elige el compás o toca “TAP” al ritmo de tu canción.</p>
+          <span class="metro-free">● Gratis y sin registro. Funciona ahora mismo.</span>
         </div>
-        <div class="steps">
-          <div class="step"><span class="n">01</span><div><h3>Cuatro acordes, cientos de canciones</h3><p>Do, Sol, La menor y Fa. Con esos cuatro ya suenan cientos de temas. Empiezas por ahí, no por escalas.</p></div></div>
-          <div class="step"><span class="n">02</span><div><h3>Cámara lenta, cuadro por cuadro</h3><p>Cada cambio difícil, filmado de cerca y despacio. Ves exactamente dónde va cada dedo, sin adivinar.</p></div></div>
-          <div class="step"><span class="n">03</span><div><h3>15 minutos al día</h3><p>Una rutina corta que sí sostienes. Constancia, no maratones de domingo que te queman.</p></div></div>
+        <div class="metro-right">
+          <div class="beats" id="beats" aria-hidden="true"></div>
+          <div class="bpm-display"><span id="bpmVal">100</span><small> BPM</small></div>
+          <input class="metro-slider" id="bpm" type="range" min="40" max="220" value="100" aria-label="Tempo en pulsos por minuto">
+          <div class="metro-row" id="presets"></div>
+          <div class="metro-row" id="sigs"></div>
+          <div class="metro-ctrls">
+            <button class="btn btn-gold btn-sm" id="play" type="button">▶ Iniciar</button>
+            <button class="btn btn-line btn-sm" id="tap" type="button">TAP</button>
+          </div>
         </div>
       </div>
-      <figure class="reveal">
-        <img src="assets/img/method.jpg" alt="Doc 3V sentado tocando su guitarra con la ciudad de fondo" width="1100" height="1375" loading="lazy">
-      </figure>
+    </div>
+  </section>
+
+  <!-- APRENDE (adultos) -->
+  <section id="aprende">
+    <div class="wrap adult">
+      <div class="reveal">
+        <p class="eyebrow">El método, para adultos</p>
+        <div class="sec-head"><h2 class="k">El mito de la esponja infantil.</h2><h2>Tu cerebro adulto <span class="g">sí puede.</span></h2><p>Te dijeron que si no empezaste de niño, ya es tarde. Es falso. El adulto no aprende peor: aprende distinto, y en algunas cosas mejor.</p></div>
+        <div class="adv">
+          <div class="row"><span class="n">01</span><div><h3>Aprendes con intención</h3><p>No practicas porque te obligan. Sabes por qué estás ahí, y eso enfoca cada minuto.</p></div></div>
+          <div class="row"><span class="n">02</span><div><h3>Entiendes la teoría más rápido</h3><p>Un niño memoriza. Tú entiendes por qué un acorde suena como suena, y lo aplicas al toque.</p></div></div>
+          <div class="row"><span class="n">03</span><div><h3>Tu frustración tiene contexto</h3><p>Ya aprendiste cosas difíciles antes. Sabes que la curva existe y que se pasa. Un niño no.</p></div></div>
+        </div>
+        <p style="color:var(--cream-70);margin-top:22px;font-size:15.5px">El único obstáculo real no es tu edad. Es el <b style="color:var(--cream)">tiempo</b>. Por eso el método se diseñó en bloques de 15 minutos.</p>
+      </div>
+      <figure class="reveal"><img src="assets/img/method.jpg" alt="Doc 3V sentado tocando su guitarra con la ciudad de fondo" width="1100" height="1375" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- ACORDES -->
+  <section class="chords" id="acordes">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:52ch">
+        <p class="eyebrow">Tus primeros acordes</p>
+        <div class="sec-head center"><h2>Cuatro formas, <span class="g">cientos de canciones.</span></h2><p>Estos son los acordes con los que empiezas. Cada uno, con la posición exacta de los dedos.</p></div>
+      </div>
+      <div class="chord-grid reveal" id="chordGrid"></div>
+      <div class="prog reveal">
+        <p class="lbl">La progresión mágica</p>
+        <p class="seq">Am <span>·</span> F <span>·</span> C <span>·</span> G</p>
+        <p>Con estos cuatro, en este orden, ya suenan cientos de canciones. Es lo primero que aprendes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÚSICA -->
+  <section id="musica">
+    <div class="wrap music">
+      <div class="reveal">
+        <p class="eyebrow">Mi música</p>
+        <div class="sec-head"><h2>No solo <span class="g">enseño.</span> Toco.</h2><p>Más de 2 millones de reproducciones en Spotify. Aprendes con alguien que vive de la guitarra, no que solo habla de ella.</p></div>
+        <div class="cta" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn-line" href="#planes">Ver el curso</a></div>
+      </div>
+      <div class="spot reveal">
+        <iframe title="Música de Doc 3V en Spotify" loading="lazy" src="https://open.spotify.com/embed/artist/141kx79geq2cMsYly6aKgX?utm_source=generator&theme=0" allow="encrypted-media" allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 
@@ -325,7 +414,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
         <h2>Tu tutor, incluso a las <span class="g">2 de la mañana.</span></h2>
         <p>Pregúntale cualquier duda de guitarra. Te responde al instante y te lleva al minuto exacto del video donde Doc lo explica. Pruébalo, es de verdad:</p>
       </div>
-
       <div class="chat reveal" role="region" aria-label="Demostración del tutor de guitarra">
         <div class="chat-top">
           <span class="av"><img src="assets/img/joy.jpg" alt="" width="40" height="40" loading="lazy"></span>
@@ -343,21 +431,49 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
     </div>
   </section>
 
+  <!-- PLANES -->
+  <section id="planes">
+    <div class="wrap">
+      <div class="center reveal" style="max-width:50ch">
+        <p class="eyebrow">Empieza hoy</p>
+        <div class="sec-head center"><h2>Elige por dónde <span class="g">empezar.</span></h2></div>
+      </div>
+      <div class="plans-grid reveal">
+        <div class="plan">
+          <span class="badge">Gratis</span>
+          <p class="pn">Herramientas</p>
+          <p class="pr">$0</p>
+          <ul><li>Afinador y metrónomo</li><li>Diccionario de acordes</li><li>Tutoriales abiertos</li></ul>
+          <a class="btn btn-line" href="#herramientas">Usar gratis</a>
+        </div>
+        <div class="plan feat">
+          <span class="badge">Recomendado</span>
+          <p class="pn">Plan Pro</p>
+          <p class="pr">$2.99<small> /mes</small></p>
+          <ul><li>Todas las herramientas Pro</li><li>Generador de ejercicios</li><li>Tutor 24/7 sin límite</li></ul>
+          <a class="btn btn-gold" href="#tutor">Empezar Pro</a>
+        </div>
+        <div class="plan">
+          <span class="badge">De por vida</span>
+          <p class="pn">Curso completo</p>
+          <p class="pr">Acceso<small> total</small></p>
+          <ul><li>Más de 100 tutoriales</li><li>Método paso a paso</li><li>Acceso de por vida</li></ul>
+          <a class="btn btn-line" href="#planes">Ver el curso</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SOBRE DOC -->
   <section id="doc">
     <div class="wrap about">
-      <figure class="reveal">
-        <img src="assets/img/about.jpg" alt="Retrato de Doc 3V con lentes y guitarra en el centro histórico de Quito" width="1000" height="1000" loading="lazy">
-      </figure>
+      <figure class="reveal"><img src="assets/img/about.jpg" alt="Retrato de Doc 3V con lentes y guitarra en el centro histórico de Quito" width="1000" height="1000" loading="lazy"></figure>
       <div class="reveal">
         <p class="eyebrow">Sobre Doc</p>
         <p class="k">De la consulta médica al escenario, y de ahí a enseñarte a ti.</p>
-        <p>Doc 3V es músico y educador. Empezó como muchos de sus alumnos: con ganas y sin saber por dónde arrancar. Hoy lleva su música a más de 1.3 millones de personas y +2 millones de reproducciones en Spotify, y dedica su método a una sola cosa: que toques de verdad, no que memorices teoría.</p>
+        <p>Doc 3V es músico y educador. Empezó como muchos de sus alumnos: con ganas y sin saber por dónde arrancar. Hoy lleva su música a más de 1.3 millones de personas, y dedica su método a una sola cosa: que toques de verdad, no que memorices teoría.</p>
         <p>Su enseñanza es en español, cercana y sin vueltas. Aprendes tocando lo que te gusta, con alguien que ya recorrió el camino que tú empiezas.</p>
-        <div class="cta" style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
-          <a class="btn btn-gold" href="#curso">Empezar ahora</a>
-          <a class="btn btn-line" href="#tutor">Hablar con el tutor</a>
-        </div>
+        <div class="cta" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn-gold" href="#planes">Empezar ahora</a><a class="btn btn-line" href="#tutor">Hablar con el tutor</a></div>
       </div>
     </div>
   </section>
@@ -367,10 +483,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
     <div class="wrap">
       <p class="k serif reveal">¿Cuántos años llevas esperando?</p>
       <h2 class="reveal">Hoy empiezas a <span class="g">tocar.</span></h2>
-      <div class="cta reveal">
-        <a class="btn btn-gold" href="#curso">Ver el curso</a>
-        <a class="btn btn-line" href="#tutor">Probar el tutor 24/7</a>
-      </div>
+      <div class="cta reveal"><a class="btn btn-gold" href="#planes">Ver el curso</a><a class="btn btn-line" href="#tutor">Probar el tutor 24/7</a></div>
     </div>
   </section>
 
@@ -384,24 +497,12 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
         <p>Aprende guitarra desde cero o retomando, en español, con quien ya recorrió el camino.</p>
       </div>
       <div class="f-links">
-        <div>
-          <h4>Aprende</h4>
-          <a href="#curso">El método</a>
-          <a href="#tutor">Tutor 24/7</a>
-          <a href="#doc">Sobre Doc</a>
-        </div>
-        <div>
-          <h4>Sígueme</h4>
-          <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
-          <a href="#">Spotify</a>
-        </div>
+        <div><h4>Explora</h4><a href="#musica">Música</a><a href="#aprende">Aprende</a><a href="#herramientas">Herramientas</a><a href="#tutor">Tutor 24/7</a></div>
+        <div><h4>Curso</h4><a href="#planes">Planes y precio</a><a href="#acordes">Acordes</a><a href="#doc">Sobre Doc</a></div>
+        <div><h4>Sígueme</h4><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Spotify</a></div>
       </div>
     </div>
-    <div class="f-bot">
-      <span>&copy; <span id="yr">2026</span> Doc 3V · Aprende Guitarra</span>
-      <span>Médico de profesión, músico de corazón.</span>
-    </div>
+    <div class="f-bot"><span>&copy; <span id="yr">2026</span> Doc 3V · Aprende Guitarra</span><span>Médico de profesión, músico de corazón.</span></div>
   </div>
 </footer>
 
@@ -409,69 +510,116 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--ink
 document.getElementById('yr').textContent = new Date().getFullYear();
 var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---- scroll reveal ---- */
+/* reveal */
 if (!reduce && 'IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:.14, rootMargin:'0px 0px -50px 0px' });
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:.12, rootMargin:'0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-} else {
-  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
-}
+} else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
 
-/* ---- tutor demo ---- */
-var QA = [
-  { q:"¿Cómo cambio de Do a Sol sin frenar?",
-    a:"El error clásico es levantar toda la mano. El truco es el <b>dedo ancla</b>: tu dedo 3 casi no se mueve entre Do y Sol. Úsalo de guía y los otros caen solos, sin cortar la canción.",
-    v:"Cambios rápidos de acordes", t:"4:32" },
-  { q:"Se me traba la cejilla (Fa)",
-    a:"Fa no se gana con fuerza, se gana con posición. Gira un poco el codo hacia adentro y apoya el <b>hueso</b> del dedo, no la yema blanda. Si te duele, estás empujando de más.",
-    v:"Domina la cejilla sin dolor", t:"7:15" },
-  { q:"¿Qué canción fácil aprendo primero?",
-    a:"Una de 4 acordes: <b>Do, Sol, La menor y Fa</b>. Con esos cuatro ya tocas cientos de canciones. Te dejo mi recomendación para tu primera semana, con la tablatura lista.",
-    v:"Tu primera canción en 4 acordes", t:"2:08" },
-  { q:"Se me cansa la mano al rasguear",
-    a:"El rasgueo sale de la <b>muñeca</b>, no del brazo. Si mueves todo el antebrazo te agotas en un minuto. Suéltala como cuando sacudes agua de la mano, y el ritmo fluye solo.",
-    v:"Rasgueo suelto y sin cansancio", t:"5:47" },
-  { q:"¿Cuánto debo practicar al día?",
-    a:"15 minutos enfocados le ganan a 2 horas distraídas. Mejor un rato corto <b>todos los días</b> que un maratón el domingo. Te armo una rutina de 15 minutos que sí vas a sostener.",
-    v:"Rutina diaria de 15 minutos", t:"3:20" }
+/* ---------- CHORD DIAGRAMS (SVG, posiciones reales) ---------- */
+/* frets: 6 valores, cuerda 6ª(mi grave)→1ª(mi aguda). -1 = muda, 0 = al aire */
+var CHORDS = [
+  { name:'Em', tab:'0 2 2 0 0 0', frets:[0,2,2,0,0,0] },
+  { name:'Am', tab:'x 0 2 2 1 0', frets:[-1,0,2,2,1,0] },
+  { name:'C',  tab:'x 3 2 0 1 0', frets:[-1,3,2,0,1,0] },
+  { name:'G',  tab:'3 2 0 0 0 3', frets:[3,2,0,0,0,3] }
 ];
-
-var log = document.getElementById('log');
-var chipsBox = document.getElementById('chips');
-
-QA.forEach(function(item, i){
-  var c = document.createElement('button');
-  c.className = 'chip'; c.type = 'button'; c.textContent = item.q;
-  c.addEventListener('click', function(){ ask(item, c); });
-  chipsBox.appendChild(c);
+function chordSVG(frets){
+  var W=96,H=120, L=14,R=82,T=24,B=104, strings=6, fretsN=4;
+  var xs=[], sw=(R-L)/(strings-1);
+  for(var s=0;s<strings;s++) xs.push(L+s*sw);
+  var fh=(B-T)/fretsN, svg='';
+  svg+='<rect x="'+L+'" y="'+T+'" width="'+(R-L)+'" height="6" fill="#F9F5EE"/>'; // cejuela
+  for(var f=1;f<=fretsN;f++){ var y=T+f*fh; svg+='<line x1="'+L+'" y1="'+y+'" x2="'+R+'" y2="'+y+'" stroke="rgba(249,245,238,.28)" stroke-width="1"/>'; }
+  for(var s2=0;s2<strings;s2++){ svg+='<line x1="'+xs[s2]+'" y1="'+T+'" x2="'+xs[s2]+'" y2="'+B+'" stroke="rgba(249,245,238,.35)" stroke-width="1"/>'; }
+  for(var i=0;i<strings;i++){
+    var fr=frets[i], x=xs[i];
+    if(fr>0){ var cy=T+(fr-0.5)*fh; svg+='<circle cx="'+x+'" cy="'+cy+'" r="6.5" fill="#C8882A"/>'; }
+    else if(fr===0){ svg+='<circle cx="'+x+'" cy="'+(T-9)+'" r="4" fill="none" stroke="#F9F5EE" stroke-width="1.4"/>'; }
+    else { svg+='<text x="'+x+'" y="'+(T-5)+'" fill="rgba(249,245,238,.5)" font-size="11" text-anchor="middle" font-family="monospace">×</text>'; }
+  }
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Diagrama del acorde">'+svg+'</svg>';
+}
+var cg=document.getElementById('chordGrid');
+CHORDS.forEach(function(c){
+  var el=document.createElement('div'); el.className='chord';
+  el.innerHTML=chordSVG(c.frets)+'<b>'+c.name+'</b><span>'+c.tab+'</span>';
+  cg.appendChild(el);
 });
 
-function scrollLog(){ log.scrollTop = log.scrollHeight; }
+/* ---------- METRÓNOMO (Web Audio, funciona de verdad) ---------- */
+(function(){
+  var ac=null, next=0, timer=null, beat=0, running=false;
+  var bpm=100, beatsPer=4, sub=[]; // acentos
+  var bpmEl=document.getElementById('bpm'), bpmVal=document.getElementById('bpmVal');
+  var beatsBox=document.getElementById('beats'), playBtn=document.getElementById('play'), tapBtn=document.getElementById('tap');
 
-function ask(item, chip){
-  chip.disabled = true;
-  var u = document.createElement('div');
-  u.className = 'msg user'; u.textContent = item.q;
-  log.appendChild(u); scrollLog();
+  var PRESETS=[['Balada',70],['Pop',100],['Rock',120],['Cumbia',130],['Salsa',185]];
+  var SIGS=[['4/4',4],['3/4',3],['6/8',6],['2/4',2]];
+  var presetsBox=document.getElementById('presets'), sigsBox=document.getElementById('sigs');
+  PRESETS.forEach(function(p){ var b=document.createElement('button'); b.className='pill'; b.type='button'; b.textContent=p[0]+' · '+p[1]; b.onclick=function(){ setBpm(p[1]); }; presetsBox.appendChild(b); });
+  SIGS.forEach(function(s,i){ var b=document.createElement('button'); b.className='pill'+(i===0?' sel':''); b.type='button'; b.textContent=s[0]; b.dataset.n=s[1]; b.onclick=function(){ beatsPer=s[1]; beat=0; [].forEach.call(sigsBox.children,function(x){x.classList.remove('sel');}); b.classList.add('sel'); renderBeats(); }; sigsBox.appendChild(b); });
 
-  var think = reduce ? 250 : 850;
-  var typing = document.createElement('div');
-  typing.className = 'typing'; typing.setAttribute('aria-hidden','true');
-  typing.innerHTML = '<i></i><i></i><i></i>';
-  setTimeout(function(){ log.appendChild(typing); scrollLog(); }, 180);
+  function renderBeats(){ beatsBox.innerHTML=''; for(var i=0;i<beatsPer;i++){ var d=document.createElement('span'); d.className='beat'+(i===0?' acc':''); beatsBox.appendChild(d); } }
+  function setBpm(v){ bpm=Math.max(40,Math.min(220,v)); bpmEl.value=bpm; bpmVal.textContent=bpm; }
+  bpmEl.addEventListener('input',function(){ setBpm(+bpmEl.value); });
 
+  function click(time,acc){
+    var o=ac.createOscillator(), g=ac.createGain();
+    o.frequency.value=acc?1500:900; o.connect(g); g.connect(ac.destination);
+    g.gain.setValueAtTime(acc?0.5:0.28,time); g.gain.exponentialRampToValueAtTime(0.0001,time+0.05);
+    o.start(time); o.stop(time+0.06);
+  }
+  function schedule(){
+    while(next<ac.currentTime+0.1){
+      var acc=(beat%beatsPer)===0;
+      click(next,acc);
+      var b=beat%beatsPer;
+      (function(idx){ var when=(next-ac.currentTime)*1000; setTimeout(function(){ flash(idx); }, Math.max(0,when)); })(b);
+      next+=60/bpm; beat++;
+    }
+    timer=setTimeout(schedule,25);
+  }
+  function flash(i){ var kids=beatsBox.children; for(var k=0;k<kids.length;k++)kids[k].classList.remove('on'); if(kids[i])kids[i].classList.add('on'); }
+  function start(){
+    if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+    if(ac.state==='suspended') ac.resume();
+    running=true; beat=0; next=ac.currentTime+0.05; schedule(); playBtn.textContent='■ Detener';
+  }
+  function stop(){ running=false; clearTimeout(timer); playBtn.textContent='▶ Iniciar'; [].forEach.call(beatsBox.children,function(x){x.classList.remove('on');}); }
+  playBtn.addEventListener('click',function(){ running?stop():start(); });
+
+  var taps=[];
+  tapBtn.addEventListener('click',function(){
+    var now=performance.now(); taps.push(now); taps=taps.filter(function(t){return now-t<3000;});
+    if(taps.length>=2){ var ivs=[]; for(var i=1;i<taps.length;i++)ivs.push(taps[i]-taps[i-1]); var avg=ivs.reduce(function(a,b){return a+b;},0)/ivs.length; setBpm(Math.round(60000/avg)); }
+  });
+  renderBeats(); setBpm(100);
+})();
+
+/* ---------- TUTOR demo ---------- */
+var QA=[
+  {q:"¿Cómo cambio de Do a Sol sin frenar?",a:"El error clásico es levantar toda la mano. El truco es el <b>dedo ancla</b>: tu dedo 3 casi no se mueve entre Do y Sol. Úsalo de guía y los otros caen solos, sin cortar la canción.",v:"Cambios rápidos de acordes",t:"4:32"},
+  {q:"Se me traba la cejilla (Fa)",a:"Fa no se gana con fuerza, se gana con posición. Gira un poco el codo hacia adentro y apoya el <b>hueso</b> del dedo, no la yema blanda. Si te duele, estás empujando de más.",v:"Domina la cejilla sin dolor",t:"7:15"},
+  {q:"¿Qué canción fácil aprendo primero?",a:"Una de 4 acordes: <b>Do, Sol, La menor y Fa</b>. Con esos cuatro ya tocas cientos de canciones. Te dejo mi recomendación para tu primera semana, con la tablatura lista.",v:"Tu primera canción en 4 acordes",t:"2:08"},
+  {q:"Se me cansa la mano al rasguear",a:"El rasgueo sale de la <b>muñeca</b>, no del brazo. Si mueves todo el antebrazo te agotas en un minuto. Suéltala como cuando sacudes agua de la mano, y el ritmo fluye solo.",v:"Rasgueo suelto y sin cansancio",t:"5:47"},
+  {q:"¿Cuánto debo practicar al día?",a:"15 minutos enfocados le ganan a 2 horas distraídas. Mejor un rato corto <b>todos los días</b> que un maratón el domingo. Te armo una rutina de 15 minutos que sí vas a sostener.",v:"Rutina diaria de 15 minutos",t:"3:20"}
+];
+var log=document.getElementById('log'), chipsBox=document.getElementById('chips');
+QA.forEach(function(item){ var c=document.createElement('button'); c.className='chip'; c.type='button'; c.textContent=item.q; c.addEventListener('click',function(){ ask(item,c); }); chipsBox.appendChild(c); });
+function scrollLog(){ log.scrollTop=log.scrollHeight; }
+function ask(item,chip){
+  chip.disabled=true;
+  var u=document.createElement('div'); u.className='msg user'; u.textContent=item.q; log.appendChild(u); scrollLog();
+  var think=reduce?250:850;
+  var typing=document.createElement('div'); typing.className='typing'; typing.setAttribute('aria-hidden','true'); typing.innerHTML='<i></i><i></i><i></i>';
+  setTimeout(function(){ log.appendChild(typing); scrollLog(); },180);
   setTimeout(function(){
-    if (typing.parentNode) typing.remove();
-    var b = document.createElement('div');
-    b.className = 'msg bot';
-    b.innerHTML = item.a +
-      '<span class="cite" role="button" tabindex="0" title="Abre el video en el minuto exacto">' +
-        '<span class="play" aria-hidden="true">▶</span> Ver en “' + item.v + '” · ' + item.t +
-      '</span>';
+    if(typing.parentNode) typing.remove();
+    var b=document.createElement('div'); b.className='msg bot';
+    b.innerHTML=item.a+'<span class="cite" role="button" tabindex="0" title="Abre el video en el minuto exacto"><span class="play" aria-hidden="true">▶</span> Ver en “'+item.v+'” · '+item.t+'</span>';
     log.appendChild(b); scrollLog();
-  }, think + 350);
+  },think+350);
 }
 </script>
 </body>
