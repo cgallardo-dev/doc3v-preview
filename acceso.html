@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Acceso · Doc 3V — Aprende Guitarra</title>
+<meta name="theme-color" content="#0A0A0C">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/aula.css">
+</head>
+<body class="app-body-root">
+
+<div class="gate">
+  <div class="gate-card">
+    <a class="gate-brand" href="index.html"><img src="assets/img/logo.png" alt="" width="30" height="30"> Doc 3V</a>
+
+    <div class="auth-tabs" role="tablist" aria-label="Acceso">
+      <button id="tabLogin" class="at-tab is-on" type="button" role="tab" aria-selected="true">Iniciar sesión</button>
+      <button id="tabReg" class="at-tab" type="button" role="tab" aria-selected="false">Crear cuenta</button>
+    </div>
+
+    <!-- INICIAR SESIÓN -->
+    <form id="formLogin" class="gate-form" novalidate>
+      <h1 class="gate-h">Hola de nuevo</h1>
+      <p class="gate-sub">Entra a tu curso y sigue justo donde lo dejaste.</p>
+      <label class="fld"><span>Correo</span>
+        <input id="lEmail" type="email" inputmode="email" placeholder="tu@correo.com" autocomplete="email" required></label>
+      <label class="fld"><span>Contraseña</span>
+        <input id="lPass" type="password" placeholder="Tu contraseña" autocomplete="current-password" required></label>
+      <p class="gate-err" id="lErr" hidden></p>
+      <button class="btn btn-gold" type="submit">Entrar a la app</button>
+    </form>
+
+    <!-- CREAR CUENTA -->
+    <form id="formReg" class="gate-form" novalidate hidden>
+      <h1 class="gate-h">Crea tu cuenta</h1>
+      <p class="gate-sub">Con tu cuenta accedes al curso completo, tu progreso y tu práctica.</p>
+      <label class="fld"><span>Nombre</span>
+        <input id="rName" type="text" placeholder="Tu nombre" autocomplete="name" required></label>
+      <label class="fld"><span>Correo</span>
+        <input id="rEmail" type="email" inputmode="email" placeholder="tu@correo.com" autocomplete="email" required></label>
+      <label class="fld"><span>Contraseña</span>
+        <input id="rPass" type="password" placeholder="Crea una contraseña" autocomplete="new-password" required></label>
+      <p class="gate-err" id="rErr" hidden></p>
+      <button class="btn btn-gold" type="submit">Crear cuenta y entrar</button>
+    </form>
+
+    <div class="gate-alt">
+      <button id="demoEnter" type="button" class="btn btn-line btn-sm">Entrar en modo demostración</button>
+      <p class="gate-note"><a href="index.html">← Volver al sitio</a></p>
+    </div>
+
+    <p class="gate-foot">
+      <span class="lock">🔒</span> Prototipo. Con el pago conectado, comprar el curso crea tu cuenta
+      y te trae aquí automáticamente.
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var wantReg = qs.get('tab') === 'registro' || location.hash === '#registro';
+  var tabL = document.getElementById('tabLogin'), tabR = document.getElementById('tabReg');
+  var fL = document.getElementById('formLogin'), fR = document.getElementById('formReg');
+
+  function show(reg) {
+    tabR.classList.toggle('is-on', reg); tabL.classList.toggle('is-on', !reg);
+    tabR.setAttribute('aria-selected', String(reg)); tabL.setAttribute('aria-selected', String(!reg));
+    fR.hidden = !reg; fL.hidden = reg;
+    (reg ? document.getElementById('rName') : document.getElementById('lEmail')).focus();
+  }
+  tabL.addEventListener('click', function () { show(false); });
+  tabR.addEventListener('click', function () { show(true); });
+  if (wantReg) show(true);
+
+  function enter(sess) {
+    try { localStorage.setItem('doc3v_session', JSON.stringify(sess)); } catch (e) {}
+    location.href = 'aula.html';
+  }
+
+  fL.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('lEmail').value.trim();
+    var pass = document.getElementById('lPass').value.trim();
+    var err = document.getElementById('lErr');
+    if (!email || !pass) { err.textContent = 'Completa tu correo y tu contraseña.'; err.hidden = false; return; }
+    enter({ email: email, name: email.split('@')[0], via: 'login', ts: Date.now() });
+  });
+
+  fR.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('rName').value.trim();
+    var email = document.getElementById('rEmail').value.trim();
+    var pass = document.getElementById('rPass').value.trim();
+    var err = document.getElementById('rErr');
+    if (!name || !email || !pass) { err.textContent = 'Completa todos los campos.'; err.hidden = false; return; }
+    enter({ email: email, name: name, via: 'registro', ts: Date.now() });
+  });
+
+  document.getElementById('demoEnter').addEventListener('click', function () {
+    enter({ email: 'alumno@demo.doc3v', name: 'Alumno', via: 'demo', ts: Date.now() });
+  });
+})();
+</script>
+</body>
+</html>

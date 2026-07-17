@@ -16,6 +16,12 @@
 .gate-brand img{height:30px;width:auto}
 .gate-h{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-size:30px;letter-spacing:.01em;line-height:1}
 .gate-sub{color:var(--cream-70);font-size:15px;margin-top:10px;margin-bottom:24px}
+.auth-tabs{display:flex;gap:6px;background:var(--ink);border:1px solid var(--line-2);
+  border-radius:11px;padding:5px;margin-bottom:22px}
+.at-tab{flex:1;font:inherit;font-size:13.5px;font-weight:600;color:var(--cream-45);
+  background:none;border:0;cursor:pointer;padding:10px;border-radius:8px;transition:color .2s,background .2s}
+.at-tab:hover{color:var(--cream-70)}
+.at-tab.is-on{background:var(--panel);color:var(--cream);box-shadow:0 1px 0 rgba(0,0,0,.3)}
 .gate-form{display:flex;flex-direction:column;gap:14px}
 .fld{display:flex;flex-direction:column;gap:7px}
 .fld span{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-45)}

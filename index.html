@@ -31,7 +31,7 @@
       <a href="#precio">Curso</a>
       <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
     </nav>
-    <div class="hdr-cta"><a class="btn btn-line btn-sm" href="#tutor">Probar el tutor</a><a class="btn btn-gold btn-sm" href="#precio">Empezar</a></div>
+    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html">Iniciar sesión</a><a class="btn btn-gold btn-sm" href="acceso.html?tab=registro">Crear cuenta</a></div>
   </div>
 </header>
 
@@ -175,7 +175,7 @@
             <li>Dudas respondidas a diario por Doc</li>
             <li>Para principiantes absolutos y adultos sin experiencia</li>
           </ul>
-          <a class="btn btn-gold" href="aula.html">Empezar hoy — riesgo cero</a>
+          <a class="btn btn-gold" href="acceso.html?tab=registro">Empezar hoy — riesgo cero</a>
           <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro.</p>
         </div>
         <aside class="price-side">
@@ -236,5 +236,14 @@
   </div>
 </footer>
 <script src="assets/app.js" defer></script>
+<script>
+  /* Si ya hay sesión, el header muestra "Entrar a la app" en vez de login/registro (patrón NotorAI). */
+  try {
+    if (localStorage.getItem('doc3v_session')) {
+      var c = document.getElementById('hdrCta');
+      if (c) c.innerHTML = '<a class="btn btn-line btn-sm" href="aula.html">Entrar a la app →</a>';
+    }
+  } catch (e) {}
+</script>
 </body>
 </html>

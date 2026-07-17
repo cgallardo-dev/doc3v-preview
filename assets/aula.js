@@ -102,37 +102,6 @@ const $ = sel => document.querySelector(sel);
 const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
 
-/* ============================ PUERTA DE ACCESO ============================ */
-function showGate() {
-  $('#gate').hidden = false;
-  $('#app').hidden = true;
-}
-function enter(session) {
-  store.session = session;
-  $('#gate').hidden = true;
-  $('#app').hidden = false;
-  bootApp();
-}
-
-function initGate() {
-  $('#loginForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const email = $('#email').value.trim();
-    const code = $('#code').value.trim();
-    const err = $('#gateErr');
-    if (!email || !code) {
-      err.textContent = 'Completa tu correo y tu código de acceso.';
-      err.hidden = false;
-      return;
-    }
-    // Prototipo: se acepta cualquier código no vacío. Aquí valida el backend luego.
-    enter({ email, name: email.split('@')[0], via: 'code', ts: Date.now() });
-  });
-  $('#demoEnter').addEventListener('click', () => {
-    enter({ email: 'alumno@demo.doc3v', name: 'Alumno', via: 'demo', ts: Date.now() });
-  });
-}
-
 /* ============================ APP ============================ */
 function bootApp() {
   const s = store.session;
@@ -388,7 +357,7 @@ function wireChrome() {
   document.addEventListener('click', e => {
     if (!e.target.closest('.au-menu')) { drop.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
   });
-  $('#logoutBtn').addEventListener('click', () => { store.clearSession(); location.hash = ''; showGate(); });
+  $('#logoutBtn').addEventListener('click', () => { store.clearSession(); location.replace('acceso.html'); });
   $('#resetBtn').addEventListener('click', () => {
     if (confirm('¿Reiniciar tu progreso y tu racha? Esto no borra tu acceso.')) {
       localStorage.removeItem(LS.done); localStorage.removeItem(LS.streak);
@@ -398,9 +367,10 @@ function wireChrome() {
 }
 
 /* ============================ ARRANQUE ============================ */
+/* El aula vive DETRÁS del portón: sin sesión, de vuelta a acceso.html (patrón NotorAI). */
 window.addEventListener('hashchange', () => { if (!$('#app').hidden) route(); });
 document.addEventListener('DOMContentLoaded', () => {
-  initGate();
-  if (store.session) enter(store.session);
-  else showGate();
+  if (!store.session) { location.replace('acceso.html'); return; }
+  $('#app').hidden = false;
+  bootApp();
 });
