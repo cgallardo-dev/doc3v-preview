@@ -46,6 +46,25 @@ nav.main a[aria-current=page]::after{content:"";position:absolute;left:0;right:0
 .more-menu a{padding:10px 12px;border-radius:7px;font-size:13px;letter-spacing:.06em;color:var(--cream-70)}
 .more-menu a:hover{background:var(--panel-2);color:var(--cream)}
 .hdr-cta{display:flex;align-items:center;gap:12px}
+
+/* menú de cuenta del header (aparece con sesión; patrón NotorAI: avatar+nombre → desplegable) */
+.acct{position:relative}
+.acct-btn{display:flex;align-items:center;gap:8px;background:rgba(200,136,42,.10);border:1px solid rgba(200,136,42,.32);
+  border-radius:40px;padding:4px 11px 4px 4px;cursor:pointer;color:var(--cream);font:inherit}
+.acct-btn:hover{background:rgba(200,136,42,.18)}
+.acct-av{width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-weight:700;font-size:13px}
+.acct-name{font-size:13px;font-weight:700;color:var(--gold-bright);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:224px;background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:6px;box-shadow:0 22px 50px -20px rgba(0,0,0,.8);z-index:200}
+.acct-head{padding:10px 12px;border-bottom:1px solid var(--line-2);margin-bottom:4px}
+.acct-head b{display:block;font-size:13px;color:var(--cream)}
+.acct-head span{font-size:11px;color:var(--cream-45)}
+.acct-menu a,.acct-menu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13px;
+  color:var(--cream-70);background:none;border:0;cursor:pointer;padding:10px 12px;border-radius:9px;text-transform:none;letter-spacing:0}
+.acct-menu a:hover,.acct-menu button:hover{background:var(--panel-2);color:var(--cream)}
+.acct-app{color:var(--gold-bright)!important;font-weight:600}
+.acct-ic{font-size:15px}
+.acct-logout{color:#f87171!important}
 @media(max-width:1040px){nav.main{display:none}}
 @media(max-width:560px){.hdr-cta .btn-line{display:none}}
 

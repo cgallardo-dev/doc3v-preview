@@ -31,7 +31,8 @@
       <a href="#precio">Curso</a>
       <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
     </nav>
-    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html">Iniciar sesión</a><a class="btn btn-gold btn-sm" href="acceso.html?tab=registro">Crear cuenta</a></div>
+    <!-- Deslogueado: Iniciar sesión (a nuestra app) + Comprar (a Hotmart, la caja). Con sesión, el script de abajo lo cambia por el menú de cuenta (patrón NotorAI). -->
+    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html">Iniciar sesión</a><a class="btn btn-gold btn-sm" href="#precio">Comprar el curso</a></div>
   </div>
 </header>
 
@@ -175,8 +176,9 @@
             <li>Dudas respondidas a diario por Doc</li>
             <li>Para principiantes absolutos y adultos sin experiencia</li>
           </ul>
-          <a class="btn btn-gold" href="acceso.html?tab=registro">Empezar hoy — riesgo cero</a>
-          <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro.</p>
+          <!-- El pago sigue en Hotmart (la caja). TODO: reemplazar por el link de checkout de Hotmart de Doc. -->
+          <a class="btn btn-gold" href="#" data-hotmart>Empezar hoy — riesgo cero</a>
+          <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro con Hotmart.</p>
         </div>
         <aside class="price-side">
           <p class="pn2">¿Solo quieres la guía?</p>
@@ -237,13 +239,36 @@
 </footer>
 <script src="assets/app.js" defer></script>
 <script>
-  /* Si ya hay sesión, el header muestra "Entrar a la app" en vez de login/registro (patrón NotorAI). */
-  try {
-    if (localStorage.getItem('doc3v_session')) {
-      var c = document.getElementById('hdrCta');
-      if (c) c.innerHTML = '<a class="btn btn-line btn-sm" href="aula.html">Entrar a la app →</a>';
-    }
-  } catch (e) {}
+  /* Con sesión, el header muestra el MENÚ DE CUENTA (avatar + nombre + desplegable),
+     igual que NotorAI. El acceso a la app vive DENTRO del menú, no como un botón suelto. */
+  (function () {
+    var raw; try { raw = localStorage.getItem('doc3v_session'); } catch (e) { return; }
+    if (!raw) return;
+    var s; try { s = JSON.parse(raw); } catch (e) { return; }
+    if (!s) return;
+    var c = document.getElementById('hdrCta');
+    if (!c) return;
+    function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(m){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]);});}
+    var name = s.name || 'Alumno';
+    var first = name.split(' ')[0];
+    var initial = (first.charAt(0) || 'A').toUpperCase();
+    c.innerHTML =
+      '<div class="acct" id="acct">'
+      + '<button type="button" class="acct-btn" id="acctBtn" aria-haspopup="true" aria-expanded="false">'
+      +   '<span class="acct-av">' + esc(initial) + '</span>'
+      +   '<span class="acct-name">' + esc(first) + '</span>'
+      +   '<span aria-hidden="true">▾</span>'
+      + '</button>'
+      + '<div class="acct-menu" id="acctMenu" hidden>'
+      +   '<div class="acct-head"><b>' + esc(name) + '</b><span>' + esc(s.email || '') + '</span></div>'
+      +   '<a class="acct-app" href="aula.html"><span class="acct-ic">🎓</span> Mi aula</a>'
+      +   '<button type="button" class="acct-logout" id="acctLogout">Cerrar sesión</button>'
+      + '</div></div>';
+    var btn = document.getElementById('acctBtn'), menu = document.getElementById('acctMenu');
+    btn.addEventListener('click', function (e) { e.stopPropagation(); var open = menu.hidden; menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('#acct')) { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
+    document.getElementById('acctLogout').addEventListener('click', function () { try { localStorage.removeItem('doc3v_session'); } catch (e) {} location.reload(); });
+  })();
 </script>
 </body>
 </html>
