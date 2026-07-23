@@ -1,0 +1,12 @@
+# Secretos — este repo es PUBLICO. Nada de esto puede subir jamas.
+.env
+.env.*
+!.env.example
+.vercel/
+.vercel
+
+# Dependencias / basura de sistema
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
