@@ -236,7 +236,23 @@ section{padding:88px 0}
 @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
 .chat-ask{padding:16px 20px;border-top:1px solid var(--line);background:var(--panel-2)}
 .chat-ask .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-45);margin-bottom:11px}
+.chat-ask .ask-form+.label{margin-top:15px}
+/* campo de pregunta libre (lo que convierte el demo en un bot de verdad) */
+.ask-form{display:flex;align-items:center;gap:9px}
+/* 16px NO es capricho: Safari en iPhone hace zoom automatico al enfocar un
+   campo con letra menor a 16px, y el demo se ve descuadrado en el celular. */
+.ask-input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--cream);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:11px 16px;transition:border-color .2s,box-shadow .2s}
+.ask-input::placeholder{color:var(--cream-45)}
+.ask-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,136,42,.16)}
+.ask-input[readonly]{color:var(--cream-45);cursor:default}
+.ask-send{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--gold);color:var(--ink);font-size:17px;font-weight:700;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.ask-send:hover:not(:disabled){background:var(--gold-bright)}
+.ask-send:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px}
+.ask-send:disabled{opacity:.38;cursor:default}
 .chips{display:flex;flex-wrap:wrap;gap:9px}
+/* mientras el tutor responde apagamos los chips con clase, no con [disabled]:
+   así el foco del teclado no se pierde a mitad de la conversación */
+.chips.is-busy .chip{opacity:.32;pointer-events:none}
 .chip{font-size:13.5px;font-weight:600;color:var(--cream);background:transparent;border:1px solid var(--line);border-radius:20px;padding:9px 15px;cursor:pointer;transition:.2s;text-align:left}
 .chip:hover:not(:disabled){border-color:var(--gold);color:var(--gold-bright)}
 .chip:disabled{opacity:.32;cursor:default}

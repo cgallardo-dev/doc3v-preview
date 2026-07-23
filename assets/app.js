@@ -80,31 +80,226 @@
     renderBeats(); setBpm(100);
   }
 
-  /* tutor demo */
+  /* ───────────────────────── tutor 24/7 (chat en vivo) ─────────────────────────
+     Habla con /api/ask (función serverless en el mismo origen → sin CORS y sin
+     exponer la llave de OpenAI). Contrato de respuesta, idéntico a answer() del
+     motor en Python:
+         { gate: bool, score: num, text: "…", cite: { title, time, url, thumb } }
+
+     Dos reglas que mandan sobre todo lo demás:
+       1) gate === true  → el bot NO inventa: muestra su mensaje de derivación y
+          NO pinta cita. Eso no es una falla, es el argumento de venta.
+       2) Si la API falla, tarda o devuelve algo raro → caemos al set curado de
+          abajo. Nunca se muestra un error técnico: este demo se enseña en vivo
+          delante de un cliente y no puede verse roto ni un segundo.
+     ──────────────────────────────────────────────────────────────────────────── */
   var log = document.getElementById('log'), chipsBox = document.getElementById('chips');
   if (log && chipsBox) {
+    var API_URL = '/api/ask';
+    var API_TIMEOUT = 12000;   // el cliente corta ANTES que la función, para que el respaldo alcance a entrar
+    var MAX_LEN = 200;         // pregunta corta = prompt corto = gasto acotado
+
+    /* Set curado: son respuestas reales, con el video y el segundo exactos.
+       Sirven para dos cosas: sugerencias (chips) y respaldo si la API no está. */
     var QA = [
-      { q: "¿Cómo cambio de Do a Sol sin frenar?", a: "El error clásico es levantar toda la mano. El truco es el <b>dedo ancla</b>: tu dedo 3 casi no se mueve entre Do y Sol. Úsalo de guía y los otros caen solos, sin cortar la canción.", v: "Cambios rápidos de acordes", t: "4:32" },
-      { q: "Se me traba la cejilla (Fa)", a: "Fa no se gana con fuerza, se gana con posición. Gira un poco el codo hacia adentro y apoya el <b>hueso</b> del dedo, no la yema blanda. Si te duele, estás empujando de más.", v: "Domina la cejilla sin dolor", t: "7:15" },
-      { q: "¿Qué canción fácil aprendo primero?", a: "Una de 4 acordes: <b>Do, Sol, La menor y Fa</b>. Con esos cuatro ya tocas cientos de canciones. Te dejo mi recomendación para tu primera semana, con la tablatura lista.", v: "Tu primera canción en 4 acordes", t: "2:08" },
-      { q: "Se me cansa la mano al rasguear", a: "El rasgueo sale de la <b>muñeca</b>, no del brazo. Si mueves todo el antebrazo te agotas en un minuto. Suéltala como cuando sacudes agua de la mano, y el ritmo fluye solo.", v: "Rasgueo suelto y sin cansancio", t: "5:47" },
-      { q: "¿Cuánto debo practicar al día?", a: "15 minutos enfocados le ganan a 2 horas distraídas. Mejor un rato corto <b>todos los días</b> que un maratón el domingo. Te armo una rutina de 15 minutos que sí vas a sostener.", v: "Rutina diaria de 15 minutos", t: "3:20" }
+      { q: "¿Qué acordes lleva Dueles?", a: "Cuatro: <b>Si menor, Re, La y Sol</b>. En el precoro entra un <b>Mi menor</b>, y en el coro un <b>Fa# menor</b>.", v: "Dueles — Jesse y Joy", id: "GaNwd74lfu4", t: 8 },
+      { q: "¿Cómo es el rasgueo del intro de Dueles?", a: "Sobre Si menor: <b>bajo, golpe, bloqueo y golpe</b>. Doc lo desglosa cuerda por cuerda.", v: "Dueles — Jesse y Joy", id: "GaNwd74lfu4", t: 22 },
+      { q: "¿Qué acordes lleva Las Mañanitas?", a: "Solo <b>tres</b>: <b>La, Mi y Re</b>. Por eso es de las mejores para arrancar.", v: "Las Mañanitas", id: "uH4hbW4HKbw", t: 9 },
+      { q: "¿Y el rasgueo de Las Mañanitas?", a: "Dos: en la primera parte <b>bajo, rasgueo y bajo</b>; en la segunda, una <b>ranchera balanceada</b> (bajo y dos golpes).", v: "Las Mañanitas", id: "uH4hbW4HKbw", t: 42 },
+      { q: "¿El triste lleva cejilla?", a: "Lleva <b>puente (cejilla) en el tercer traste</b>. Los acordes: La menor, Re menor 7, Sol 7, Do maj7 y Mi 7.", v: "El triste — José José", id: "WZ0WMiwEyPE", t: 10 },
+      { q: "¿Qué opciones de mano derecha tiene El triste?", a: "<b>Tres</b>: un <b>arpegio</b>, un <b>pulsado</b> (dos veces + bloqueo) y un <b>rasgueo</b> (abajo · abajo-arriba-abajo).", v: "El triste — José José", id: "WZ0WMiwEyPE", t: 31 }
     ];
-    QA.forEach(function (item) { var c = document.createElement('button'); c.className = 'chip'; c.type = 'button'; c.textContent = item.q; c.addEventListener('click', function () { ask(item, c); }); chipsBox.appendChild(c); });
-    function scrollLog() { log.scrollTop = log.scrollHeight; }
-    function ask(item, chip) {
-      chip.disabled = true;
-      var u = document.createElement('div'); u.className = 'msg user'; u.textContent = item.q; log.appendChild(u); scrollLog();
-      var think = reduce ? 250 : 850;
-      var typing = document.createElement('div'); typing.className = 'typing'; typing.setAttribute('aria-hidden', 'true'); typing.innerHTML = '<i></i><i></i><i></i>';
-      setTimeout(function () { log.appendChild(typing); scrollLog(); }, 180);
-      setTimeout(function () {
-        if (typing.parentNode) typing.remove();
-        var b = document.createElement('div'); b.className = 'msg bot';
-        b.innerHTML = item.a + '<span class="cite" role="button" tabindex="0" title="Abre el video en el minuto exacto"><span class="play" aria-hidden="true">▶</span> Ver en “' + item.v + '” · ' + item.t + '</span>';
-        log.appendChild(b); scrollLog();
-      }, think + 350);
+    var OFFLINE_TEXT = "Ahora mismo no puedo revisar los videos de Doc. Vuelve a intentarlo en unos segundos o toca una de las preguntas de abajo.";
+
+    var askForm = document.getElementById('askForm'),
+      askInput = document.getElementById('askInput'),
+      askSend = document.getElementById('askSend'),
+      busy = false;
+
+    /* ── Cómo trato el HTML al pintar ──────────────────────────────────────────
+       El usuario ahora ESCRIBE LIBRE, así que su texto jamás toca innerHTML: va
+       por textContent y punto. Imposible inyectar nada.
+       La respuesta del bot sí necesita <b> (el set curado lo usa y el modelo
+       puede devolverlo), así que aplico lista blanca: escapo TODO y después
+       revivo solo los tokens exactos "<b>" y "</b>". Con eso, <script>,
+       <img src=x onerror=…> e incluso <b onclick="…"> se quedan escapados como
+       texto plano, porque ninguno coincide con los dos tokens permitidos: no hay
+       forma de colar un atributo ni otra etiqueta.
+       El enlace de la cita lo construyo con el DOM (createElement + href), nunca
+       concatenando HTML, y solo si la URL es http(s) — así un "javascript:" que
+       llegara desde la API no se convierte en un enlace ejecutable. */
+    function escapeHTML(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
     }
+    function richText(s) { return escapeHTML(s).replace(/&lt;(\/?)b&gt;/g, '<$1b>'); }
+
+    function scrollLog() { log.scrollTop = log.scrollHeight; }
+
+    function addUser(text) {
+      var u = document.createElement('div');
+      u.className = 'msg user';
+      u.textContent = text;                       // texto del usuario: SIEMPRE textContent
+      log.appendChild(u); scrollLog();
+    }
+
+    function addBot(text, cite) {
+      var b = document.createElement('div');
+      b.className = 'msg bot';
+      b.innerHTML = richText(text);
+      if (cite && cite.url && /^https?:\/\//i.test(cite.url)) {
+        var a = document.createElement('a');
+        a.className = 'cite';
+        a.href = cite.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.title = 'Abre el video de YouTube en el minuto exacto';
+        var play = document.createElement('span');
+        play.className = 'play'; play.setAttribute('aria-hidden', 'true'); play.textContent = '▶';
+        a.appendChild(play);
+        a.appendChild(document.createTextNode(' Ver en “' + (cite.title || 'el video de Doc') + '”' + (cite.time ? ' · ' + cite.time : '')));
+        b.appendChild(a);
+      }
+      log.appendChild(b); scrollLog();
+    }
+
+    function showTyping() {
+      var t = document.createElement('div');
+      t.className = 'typing';
+      t.setAttribute('aria-hidden', 'true');     // el punteo no se le lee a un lector de pantalla
+      t.innerHTML = '<i></i><i></i><i></i>';
+      log.appendChild(t); scrollLog();
+      return t;
+    }
+
+    /* ── Respaldo curado ──────────────────────────────────────────────────────
+       Parecido por palabras: normalizo (sin tildes, sin ñ, sin signos), me quedo
+       con las palabras de 4+ letras que no sean muletillas y mido cuántas de la
+       pregunta curada aparecen en la del usuario. Con la mitad o más, contesto
+       esa; si no, un mensaje amable. Es tosco a propósito: solo corre cuando la
+       API ya falló, y ahí lo que importa es no quedarse mudo. */
+    var STOP = { que: 1, cual: 1, cuales: 1, como: 1, para: 1, con: 1, los: 1, las: 1, del: 1, una: 1, por: 1, este: 1, esta: 1, sobre: 1, tiene: 1, lleva: 1, donde: 1, cuando: 1, porque: 1, quiero: 1, puedo: 1, dime: 1, explica: 1, favor: 1 };
+    function words(s) {
+      var norm = String(s || '').toLowerCase()
+        .replace(/[áàä]/g, 'a').replace(/[éèë]/g, 'e').replace(/[íìï]/g, 'i')
+        .replace(/[óòö]/g, 'o').replace(/[úùü]/g, 'u').replace(/ñ/g, 'n')
+        .replace(/[^a-z0-9]+/g, ' ');
+      var raw = norm.split(' '), out = [];
+      for (var i = 0; i < raw.length; i++) {
+        if (raw[i].length >= 4 && !STOP[raw[i]] && out.indexOf(raw[i]) < 0) out.push(raw[i]);
+      }
+      return out;
+    }
+    function curatedRes(item) {
+      var mm = Math.floor(item.t / 60), ss = item.t % 60;
+      return {
+        gate: false, text: item.a,
+        cite: {
+          title: item.v,
+          time: mm + ':' + (ss < 10 ? '0' : '') + ss,
+          url: 'https://www.youtube.com/watch?v=' + item.id + '&t=' + item.t + 's'
+        }
+      };
+    }
+    /* Respaldo sin conexión. El parecido se mide con Jaccard (intersección sobre
+       UNIÓN), no con "qué fracción de la pregunta curada aparece en la del
+       usuario". Ese cálculo viejo era peligroso: para "¿qué acordes lleva El
+       triste?" el mejor match salía "¿Qué acordes lleva Dueles?" con 2 de 3
+       palabras (0.67) y devolvía la respuesta de Dueles CON su cita al minuto.
+       O sea, contestaba otra canción con una cita segura de sí misma: justo lo
+       contrario de lo que vendemos. Con Jaccard ese caso da 0.5 y se rechaza.
+       El umbral es alto a propósito: aquí más vale decir "no disponible" que
+       acertarle a la pregunta equivocada. */
+    function curatedFor(question) {
+      var qw = words(question), best = null, bestScore = 0;
+      for (var i = 0; i < QA.length && qw.length; i++) {
+        var cw = words(QA[i].q), hit = 0, k;
+        for (k = 0; k < cw.length; k++) if (qw.indexOf(cw[k]) >= 0) hit++;
+        var union = qw.length + cw.length - hit;          // |A ∪ B| = |A| + |B| − |A ∩ B|
+        var score = union ? hit / union : 0;
+        if (score > bestScore) { bestScore = score; best = QA[i]; }
+      }
+      return bestScore >= 0.6 ? curatedRes(best) : { gate: true, text: OFFLINE_TEXT };
+    }
+
+    /* ── Llamada a la API. Nunca lanza: devuelve la respuesta o null. ───────── */
+    function fetchAnswer(question, done) {
+      if (!window.fetch || !window.AbortController) { done(null); return; }
+      var ctrl = new AbortController(), settled = false;
+      var timer = setTimeout(function () { ctrl.abort(); }, API_TIMEOUT);
+      function finish(res) { if (settled) return; settled = true; clearTimeout(timer); done(res); }
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        /* "question" es la clave del contrato (la misma que lee el motor en Python).
+           Mando también "q" por si la función serverless usa ese nombre: no cuesta
+           nada y evita que el demo se caiga por un desajuste de nombres. */
+        body: JSON.stringify({ question: question, q: question }),
+        signal: ctrl.signal
+      }).then(function (r) {
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      }).then(function (data) {
+        if (!data || typeof data.text !== 'string' || !data.text) throw new Error('respuesta vacía');
+        finish(data);
+      }).catch(function () { finish(null); });   // el porqué queda en la consola del navegador, no en pantalla
+    }
+
+    function syncSend() {
+      if (!askSend) return;
+      var empty = !askInput || !askInput.value.replace(/^\s+|\s+$/g, '');
+      if (busy && document.activeElement === askSend && askInput) askInput.focus();  // no dejar el foco huérfano
+      askSend.disabled = busy || empty;
+    }
+    function setBusy(on) {
+      busy = on;
+      log.setAttribute('aria-busy', on ? 'true' : 'false');
+      if (askInput) askInput.readOnly = on;        // readOnly y no disabled: el foco no se pierde
+      chipsBox.classList[on ? 'add' : 'remove']('is-busy');
+      var cs = chipsBox.querySelectorAll('.chip');
+      for (var i = 0; i < cs.length; i++) cs[i].setAttribute('aria-disabled', on ? 'true' : 'false');
+      syncSend();
+    }
+
+    function send(question, fallback) {
+      if (busy) return;
+      question = String(question || '').replace(/^\s+|\s+$/g, '').slice(0, MAX_LEN);
+      if (!question) return;
+
+      setBusy(true);
+      addUser(question);
+      if (askInput) askInput.value = '';
+
+      var typing = null;
+      var typingTimer = setTimeout(function () { typing = showTyping(); }, 160);
+      var started = Date.now(), minWait = reduce ? 250 : 700;   // que el “escribiendo…” no parpadee
+
+      fetchAnswer(question, function (res) {
+        setTimeout(function () {
+          clearTimeout(typingTimer);
+          if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+          var out = res || fallback || curatedFor(question);
+          addBot(out.text, out.gate ? null : out.cite);   // con gate NO va cita: el bot no inventa
+          setBusy(false);
+        }, Math.max(0, minWait - (Date.now() - started)));
+      });
+    }
+
+    /* chips = sugerencias. Pasan por la MISMA ruta (API primero); si falla, su
+       respaldo es su propia respuesta curada, que siempre es buena. */
+    QA.forEach(function (item) {
+      var c = document.createElement('button');
+      c.className = 'chip'; c.type = 'button'; c.textContent = item.q;
+      c.addEventListener('click', function () { send(item.q, curatedRes(item)); });
+      chipsBox.appendChild(c);
+    });
+
+    if (askForm && askInput) {
+      askForm.addEventListener('submit', function (ev) { ev.preventDefault(); send(askInput.value); });
+      askInput.addEventListener('input', syncSend);
+    }
+    syncSend();
   }
 
   /* form de contratar (demo, no envía) */

@@ -140,10 +140,20 @@
         </div>
         <div class="chat-log" id="log" aria-live="polite">
           <div class="msg bot">¡Hola! Soy el tutor de Doc. Cuéntame qué se te está trabando y te llevo al momento exacto donde él lo explica. 🎸</div>
-          <div class="msg user">¿Por dónde empiezo si nunca toqué?</div>
-          <div class="msg bot">Perfecto, empezamos de cero. Antes que nada, aprende a sostener bien la guitarra y a leer un diagrama de acordes. Doc lo muestra pasito a pasito acá:<span class="cite" role="button" tabindex="0" title="Abre el video en el minuto exacto"><span class="play" aria-hidden="true">▶</span> Ver en “Tu primera clase” · 1:15</span></div>
+          <div class="msg user">¿Qué acordes lleva Las Mañanitas?</div>
+          <div class="msg bot">Solo tres: <b>La, Mi y Re</b>. Por eso es de las mejores para arrancar. Doc te lo muestra en su video de YouTube:<a class="cite" href="https://www.youtube.com/watch?v=uH4hbW4HKbw&t=9s" target="_blank" rel="noopener" title="Abre el video de YouTube en el minuto exacto"><span class="play" aria-hidden="true">▶</span> Ver en “Las Mañanitas” · 0:09</a></div>
         </div>
-        <div class="chat-ask"><p class="label">Sigue preguntando</p><div class="chips" id="chips"></div></div>
+        <!-- Campo libre: Doc puede preguntar LO QUE QUIERA (va a /api/ask). Los chips quedan
+             abajo como sugerencias para arrancar y como red de respaldo si la API no responde. -->
+        <div class="chat-ask">
+          <form class="ask-form" id="askForm" autocomplete="off" novalidate>
+            <label class="sr-only" for="askInput">Escribe tu pregunta para el tutor de Doc 3V</label>
+            <input class="ask-input" id="askInput" type="text" name="question" maxlength="200" enterkeyhint="send" placeholder="Pregunta lo que quieras sobre los videos de Doc…">
+            <button class="ask-send" id="askSend" type="submit" aria-label="Enviar pregunta"><span aria-hidden="true">↑</span></button>
+          </form>
+          <p class="label">O prueba con una de estas</p>
+          <div class="chips" id="chips"></div>
+        </div>
       </div>
     </div>
   </section>
