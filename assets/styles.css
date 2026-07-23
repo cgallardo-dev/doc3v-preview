@@ -235,6 +235,10 @@ section{padding:88px 0}
 .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
 .chat-ask{padding:16px 20px;border-top:1px solid var(--line);background:var(--panel-2)}
+.free-hint{margin:10px 0 0;font-size:12.5px;color:var(--cream-45);letter-spacing:.02em}
+.free-hint[hidden]{display:none}
+.chips.is-busy{opacity:.5;pointer-events:none}
+.chip:disabled{opacity:.4;cursor:not-allowed}
 .chat-ask .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-45);margin-bottom:11px}
 .chat-ask .ask-form+.label{margin-top:15px}
 /* campo de pregunta libre (lo que convierte el demo en un bot de verdad) */

@@ -99,6 +99,29 @@
     var API_TIMEOUT = 12000;   // el cliente corta ANTES que la función, para que el respaldo alcance a entrar
     var MAX_LEN = 200;         // pregunta corta = prompt corto = gasto acotado
 
+    /* ── Tope del plan GRATIS ──────────────────────────────────────────────────
+       Es una palanca de PRODUCTO, no de seguridad: muestra que la versión gratis
+       es una PROBADA y empuja al curso. Vive en el navegador (localStorage), así
+       que un usuario técnico lo resetea borrando datos o pegándole directo a la
+       API — y está bien, para eso está el tope DURO de gasto en OpenAI, que es lo
+       que de verdad blinda la plata. Aquí lo que importa es la conversión.
+       Para re-demostrar sin borrar datos: abrir la página con #reset al final. */
+    var FREE_LIMIT = 5;                       // preguntas gratis antes del muro
+    var FREE_KEY = 'doc3v_free_q';
+    var freeMem = 0;                          // respaldo si localStorage está bloqueado (modo privado)
+    if (/(^|[#?&])reset\b/i.test(location.hash + location.search)) {
+      try { localStorage.removeItem(FREE_KEY); } catch (e) {}
+    }
+    function freeUsed() {
+      try { var v = parseInt(localStorage.getItem(FREE_KEY) || '', 10); return isNaN(v) ? freeMem : v; }
+      catch (e) { return freeMem; }
+    }
+    function freeBump() {
+      var n = freeUsed() + 1; freeMem = n;
+      try { localStorage.setItem(FREE_KEY, String(n)); } catch (e) {}
+      return n;
+    }
+
     /* Set curado: son respuestas reales, con el video y el segundo exactos.
        Sirven para dos cosas: sugerencias (chips) y respaldo si la API no está. */
     var QA = [
@@ -114,7 +137,31 @@
     var askForm = document.getElementById('askForm'),
       askInput = document.getElementById('askInput'),
       askSend = document.getElementById('askSend'),
+      freeHint = document.getElementById('freeHint'),
       busy = false;
+
+    /* Pinta cuántas preguntas gratis quedan. Se muestra recién cuando el usuario
+       ya empezó a preguntar (para no asustar con un "quedan 5" de entrada). */
+    function renderFree() {
+      if (!freeHint) return;
+      var quedan = Math.max(0, FREE_LIMIT - freeUsed());
+      if (freeUsed() === 0) { freeHint.hidden = true; return; }
+      freeHint.hidden = false;
+      freeHint.textContent = quedan > 0
+        ? 'Te ' + (quedan === 1 ? 'queda 1 pregunta gratis' : 'quedan ' + quedan + ' preguntas gratis')
+        : 'Llegaste al final de la versión gratis';
+    }
+
+    /* Una vez agotada la prueba, se cierra el input y se apagan los chips: el
+       único camino hacia adelante es el curso. (Product, no seguridad.) */
+    var freeLocked = false;
+    function lockFree() {
+      freeLocked = true;
+      if (askInput) { askInput.readOnly = true; askInput.placeholder = 'Prueba gratis terminada — mira el curso ↓'; }
+      var cs = chipsBox.querySelectorAll('.chip');
+      for (var i = 0; i < cs.length; i++) { cs[i].disabled = true; cs[i].setAttribute('aria-disabled', 'true'); }
+      syncSend();
+    }
 
     /* ── Cómo trato el HTML al pintar ──────────────────────────────────────────
        El usuario ahora ESCRIBE LIBRE, así que su texto jamás toca innerHTML: va
@@ -250,7 +297,7 @@
       if (!askSend) return;
       var empty = !askInput || !askInput.value.replace(/^\s+|\s+$/g, '');
       if (busy && document.activeElement === askSend && askInput) askInput.focus();  // no dejar el foco huérfano
-      askSend.disabled = busy || empty;
+      askSend.disabled = busy || empty || freeLocked;
     }
     function setBusy(on) {
       busy = on;
@@ -262,14 +309,40 @@
       syncSend();
     }
 
+    /* El muro del plan gratis: un mensaje del bot, en su misma voz, que empuja al
+       curso. Lleva un enlace real a la sección de precio (#precio), igual que el
+       resto del sitio. NO llama a la API -> no gasta. */
+    function addPaywall() {
+      var b = document.createElement('div');
+      b.className = 'msg bot';
+      b.innerHTML = richText('¡Llegaste al final de tu prueba gratis! Con estas preguntas ya viste cómo enseño. '
+        + 'Para aprender TODAS las canciones paso a paso —y preguntarme lo que quieras sin límite— llévate el curso completo.');
+      var a = document.createElement('a');
+      a.className = 'cite';
+      a.href = '#precio';
+      var play = document.createElement('span');
+      play.className = 'play'; play.setAttribute('aria-hidden', 'true'); play.textContent = '★';
+      a.appendChild(play);
+      a.appendChild(document.createTextNode(' Ver el curso completo de Doc'));
+      a.addEventListener('click', function () { setTimeout(syncSend, 400); });
+      b.appendChild(a);
+      log.appendChild(b); scrollLog();
+    }
+
     function send(question, fallback) {
-      if (busy) return;
+      if (busy || freeLocked) return;
       question = String(question || '').replace(/^\s+|\s+$/g, '').slice(0, MAX_LEN);
       if (!question) return;
 
-      setBusy(true);
       addUser(question);
       if (askInput) askInput.value = '';
+
+      // Seguro extra: si ya estaba agotado, muro al curso SIN llamar a la API.
+      if (freeUsed() >= FREE_LIMIT) { addPaywall(); lockFree(); renderFree(); return; }
+      freeBump();
+      renderFree();
+
+      setBusy(true);
 
       var typing = null;
       var typingTimer = setTimeout(function () { typing = showTyping(); }, 160);
@@ -282,6 +355,8 @@
           var out = res || fallback || curatedFor(question);
           addBot(out.text, out.gate ? null : out.cite);   // con gate NO va cita: el bot no inventa
           setBusy(false);
+          // Si esa era la última gratis, el muro aparece solo, sin esperar otro intento.
+          if (freeUsed() >= FREE_LIMIT) { addPaywall(); lockFree(); }
         }, Math.max(0, minWait - (Date.now() - started)));
       });
     }
