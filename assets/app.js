@@ -106,7 +106,7 @@
        API — y está bien, para eso está el tope DURO de gasto en OpenAI, que es lo
        que de verdad blinda la plata. Aquí lo que importa es la conversión.
        Para re-demostrar sin borrar datos: abrir la página con #reset al final. */
-    var FREE_LIMIT = 5;                       // preguntas gratis antes del muro
+    var FREE_LIMIT = 10;                      // preguntas gratis antes del muro
     var FREE_KEY = 'doc3v_free_q';
     var freeMem = 0;                          // respaldo si localStorage está bloqueado (modo privado)
     if (/(^|[#?&])reset\b/i.test(location.hash + location.search)) {
