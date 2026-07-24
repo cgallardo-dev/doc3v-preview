@@ -36,6 +36,9 @@
   position: fixed; right: 20px; bottom: 20px; width: 372px; max-width: calc(100vw - 32px);
   /* Se ajusta al contenido (crece hacia arriba) hasta un tope, en vez de dejar un
      hueco negro cuando hay pocos mensajes. */
+  /* padding:0 explícito: el panel es un <section> y el estilo global de la landing
+     (section{padding:88px 0}) le metía 88px de hueco arriba y abajo. */
+  padding: 0;
   max-height: min(600px, 80vh); display: flex; flex-direction: column;
   background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
   overflow: hidden; box-shadow: 0 24px 64px rgba(0, 0, 0, .55); animation: docbot-in .22s ease;
