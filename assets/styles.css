@@ -82,7 +82,7 @@ nav.main a[aria-current=page]::after{content:"";position:absolute;left:0;right:0
 .mobile-menu .btn{margin-top:18px;justify-content:center;width:100%}
 @media(max-width:1040px){nav.main{display:none}.nav-toggle{display:flex}.bar{justify-content:flex-start;gap:14px}.brand{margin-right:auto}}
 @media(min-width:1041px){.mobile-menu,.drawer-bg{display:none!important}}
-@media(max-width:560px){.hdr-cta .btn-line{display:none}.lg-only{display:none}}
+@media(max-width:560px){.hdr-cta .btn-line{display:none}.lg-only{display:none}.acct-name{display:none}.acct-btn{gap:5px;padding-right:9px}}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:50px;padding:0 26px;border-radius:2px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:transform .12s var(--ease),background .2s,color .2s,border-color .2s;white-space:nowrap}
