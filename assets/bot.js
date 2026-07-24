@@ -100,19 +100,38 @@
   var busy = false, greeted = false;
   var scopeVideo = '';   // si está en modo tutorial, solo pregunta sobre ese video
 
-  // Preguntas genéricas para el modo tutorial (no dependen de la canción).
-  var SCOPED_CHIPS = ['¿Qué acordes lleva?', '¿Cómo es el rasgueo?', '¿Lleva cejilla?', '¿Por dónde empiezo?'];
+  // Chips del modo tutorial: SOLO lo que todos los tutoriales de Doc cubren de
+  // verdad (sus videos son "Acordes + Ritmo"). Nada de preguntas que no aplican.
+  var SCOPED_CHIPS = ['¿Qué acordes lleva?', '¿Cómo es el ritmo?', '¿Me lo enseñas paso a paso?'];
 
   function scrollLog() { log.scrollTop = log.scrollHeight; }
   function addUser(t) { var d = document.createElement('div'); d.className = 'dm user'; d.textContent = t; log.appendChild(d); scrollLog(); }
+  function citeSecs(cite) {
+    if (cite && cite.url) { var m = /[?&]t=(\d+)s?/.exec(cite.url); if (m) return parseInt(m[1], 10) || 0; }
+    if (cite && cite.time) { var p = String(cite.time).split(':'); if (p.length === 2) return (parseInt(p[0], 10) * 60 + parseInt(p[1], 10)) || 0; }
+    return 0;
+  }
   function addBot(text, cite) {
     var b = document.createElement('div'); b.className = 'dm bot'; b.innerHTML = rich(text);
-    if (cite && cite.url && /^https?:\/\//i.test(cite.url)) {
-      var a = document.createElement('a'); a.className = 'dm-cite'; a.href = cite.url; a.target = '_blank'; a.rel = 'noopener';
-      var p = document.createElement('span'); p.setAttribute('aria-hidden', 'true'); p.textContent = '▶';
-      a.appendChild(p);
-      a.appendChild(document.createTextNode(' Ver en “' + (cite.title || 'el video de Doc') + '”' + (cite.time ? ' · ' + cite.time : '')));
-      b.appendChild(a);
+    // Solo hay cita si el backend confirmó el minuto (si no lo confirma, NO manda
+    // cite -> no inventamos minuto).
+    if (cite && cite.time) {
+      var secs = citeSecs(cite);
+      if (scopeVideo && typeof window.docBotSeek === 'function') {
+        // Modo tutorial: salta el video de ESTA página, sin abrir YouTube aparte.
+        var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'dm-cite';
+        var ps = document.createElement('span'); ps.setAttribute('aria-hidden', 'true'); ps.textContent = '▶';
+        btn.appendChild(ps); btn.appendChild(document.createTextNode(' Verlo aquí · ' + cite.time));
+        btn.addEventListener('click', function () { window.docBotSeek(secs); });
+        b.appendChild(btn);
+      } else if (cite.url && /^https?:\/\//i.test(cite.url)) {
+        // Modo general (sin video en la página): enlace a YouTube al minuto.
+        var a = document.createElement('a'); a.className = 'dm-cite'; a.href = cite.url; a.target = '_blank'; a.rel = 'noopener';
+        var p = document.createElement('span'); p.setAttribute('aria-hidden', 'true'); p.textContent = '▶';
+        a.appendChild(p);
+        a.appendChild(document.createTextNode(' Ver en “' + (cite.title || 'el video de Doc') + '” · ' + cite.time));
+        b.appendChild(a);
+      }
     }
     log.appendChild(b); scrollLog();
   }

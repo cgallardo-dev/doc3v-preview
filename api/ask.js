@@ -37,6 +37,7 @@ var EMBED_MODEL = 'text-embedding-3-small';
 var ANSWER_MODEL = 'gpt-4o-mini';   // NO cambiar: gpt-5-nano rechaza temperature y factura reasoning tokens
 var GATE_THRESHOLD = 0.28;          // por debajo de esto NO se llama al LLM (ahorra dinero y evita inventos)
 var TOP_K = 4;
+var CITE_MIN_OVERLAP = 2;           // el minuto solo se cita si la respuesta comparte >=N palabras con el segmento; si no, respondemos SIN minuto (no inventar)
 var MAX_TOKENS = 200;               // acota el peor caso: sin esto una sola request puede costar 55x
 // OpenAI renombró max_tokens -> max_completion_tokens (sep-2024). gpt-4o-mini
 // acepta los dos, pero el viejo está deprecado y los modelos nuevos lo rechazan
@@ -474,7 +475,25 @@ module.exports = async function handler(req, res) {
     // 6) cite_time: se embebe la RESPUESTA (no la pregunta) para anclar la cita.
     var aemb = await embed(text, key);
     var chunk = pickChunk(aemb, top);
-    var cstart = pickSegment(segsOf(chunk), text);
+    var segs = segsOf(chunk);
+
+    // HONESTIDAD DEL MINUTO: solo se cita si la respuesta REALMENTE aparece en el
+    // video — el mejor segmento del fragmento debe compartir >= CITE_MIN_OVERLAP
+    // palabras de contenido con la respuesta. Si no, se responde SIN minuto:
+    // mejor no citar que mandar al alumno a un segundo donde el tema no se explica.
+    var aw = words(text);
+    var maxOv = 0;
+    for (var so = 0; so < segs.length; so++) {
+      var ov = overlapCount(aw, segs[so].text);
+      if (ov > maxOv) maxOv = ov;
+    }
+    if (maxOv < CITE_MIN_OVERLAP) {
+      var noMin = { gate: false, score: round3(best), text: text };
+      cachePut(ckey, noMin);
+      return res.status(200).json(noMin);
+    }
+
+    var cstart = pickSegment(segs, text);
     var cmin = mmss(cstart);
 
     // La cita hereda la procedencia del FRAGMENTO elegido (soporta multi-video).

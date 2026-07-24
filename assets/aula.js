@@ -504,6 +504,17 @@ function viewLesson(id) {
     lv.classList.add('is-playing');
   }, { once: true });
 
+  // El bot del tutorial salta el video de ESTA página al minuto citado, sin abrir
+  // YouTube aparte. Recarga el iframe con ?start= (simple y fiable).
+  window.docBotSeek = (seconds) => {
+    const box = $('.l-video'); if (!box) return false;
+    const vid = box.getAttribute('data-vid') || l.vid;
+    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${vid}?start=${Math.max(0, seconds | 0)}&autoplay=1&rel=0&modestbranding=1" title="${esc(l.t)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    box.classList.add('is-playing');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return true;
+  };
+
   // Tutor SCOPED: solo responde sobre ESTE tutorial (su video). El flotante global
   // (abajo-derecha) sigue respondiendo sobre todo.
   $('#tutorBtn').addEventListener('click', () => { if (window.docBotOpen) window.docBotOpen({ video: l.vid, title: l.t }); });
