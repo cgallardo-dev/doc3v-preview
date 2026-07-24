@@ -330,7 +330,8 @@ section{padding:88px 0}
 .form{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:32px}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
 .field label{font-size:13.5px;font-weight:700;color:var(--cream)}
-.field input,.field select,.field textarea{font-family:inherit;font-size:15px;color:var(--cream);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:13px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
+.field input,.field select,.field textarea{font-family:inherit;font-size:16px;color:var(--cream);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:13px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
+/* 16px exactos: bajo eso, Safari iOS hace zoom automático al enfocar el campo. */
 .field input::placeholder,.field textarea::placeholder{color:var(--cream-45)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,136,42,.25)}
 .field textarea{resize:vertical;min-height:110px}
