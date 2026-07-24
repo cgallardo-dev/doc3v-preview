@@ -545,7 +545,27 @@ function wireChrome() {
 /* El aula vive DETRÁS del portón: sin sesión, de vuelta a acceso.html (patrón NotorAI). */
 window.addEventListener('hashchange', () => { if (!$('#app').hidden) route(); });
 document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(location.search);
+  const demoMode = params.has('demo');   // aula.html?demo[=<idLeccion>] -> abre-y-prueba
+
+  // Link directo para MOSTRARLE a Doc: entra en modo invitado (sin registro) y
+  // cae dentro de un tutorial con el tutor ya abierto. Sus primeros 5 segundos
+  // son la magia, sin buscar nada.
+  if (demoMode && !store.session) {
+    store.session = { email: 'invitado@demo.doc3v', name: 'Invitado', via: 'demo-link', plan: 'free', ts: Date.now() };
+  }
+
   if (!store.session) { location.replace('acceso.html'); return; }
   $('#app').hidden = false;
   bootApp();
+
+  if (demoMode) {
+    const want = params.get('demo');
+    const lesId = (want && idx(want) !== -1) ? want : LECCIONES[0].id;   // por defecto, el 1er tutorial
+    const les = LECCIONES[idx(lesId)];
+    location.hash = `#/l/${lesId}`;
+    route();
+    // abrir el tutor de ESE tutorial una vez pintada la lección
+    setTimeout(() => { if (window.docBotOpen) window.docBotOpen({ video: les.vid, title: les.t }); }, 450);
+  }
 });
