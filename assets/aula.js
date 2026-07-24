@@ -10,64 +10,222 @@
 /* 19 lecciones (las del curso real de Doc), agrupadas en 6 módulos.
    Cambiar aquí = cambia toda la app. `v` = id/embed del video (pendiente: reales). */
 const CURSO = {
-  titulo: 'Aprende Guitarra con Doc 3V',
+  titulo: 'Tutoriales de Doc 3V',
   modulos: [
-    {
-      t: 'Fundamentos — Empieza aquí',
-      k: 'Lo que nadie te explica el primer día',
-      lecciones: [
-        { id:'l01', t:'Bienvenida: cómo aprovechar el curso', dur:'4:20', desc:'Cómo está armado el método y por qué, para adultos, el orden importa más que las horas. Tu única tarea hoy: terminar esta lección y agendar tus 15 minutos diarios.' },
-        { id:'l02', t:'Partes de la guitarra y cómo sostenerla', dur:'7:05', desc:'Postura, mano izquierda y derecha. La mayoría de los dolores y los “no me sale” de las primeras semanas nacen aquí. Lo arreglamos desde el principio.' },
-        { id:'l03', t:'Cómo afinar (y por qué se desafina)', dur:'6:12', desc:'Afinar de oído y con afinador. Una guitarra desafinada te hace creer que tocas mal cuando no es así.' },
-        { id:'l04', t:'Leer un diagrama de acordes', dur:'5:40', desc:'El “mapa” que vas a usar todo el curso. Cuando lo lees de un vistazo, cualquier acorde nuevo deja de darte miedo.' },
-      ],
-    },
-    {
-      t: 'Tus primeros acordes',
-      k: 'De cero a hacer sonar tu primera progresión',
-      lecciones: [
-        { id:'l05', t:'Mi menor (Em): tu primer acorde', dur:'6:30', desc:'El más fácil y el que mejor suena de entrada. Salimos de esta lección con un acorde limpio.' },
-        { id:'l06', t:'Do (C) y Sol (G)', dur:'8:15', desc:'Dos pilares. Aquí empieza el verdadero trabajo de dedos: te muestro el truco del dedo ancla para que los cambios no te maten.' },
-        { id:'l07', t:'La progresión mágica: Am · F · C · G', dur:'9:02', desc:'Con estos cuatro, en este orden, ya suenan cientos de canciones. Es lo primero que un alumno toca “de verdad”.' },
-        { id:'l08', t:'Cambios de acorde sin cortar el ritmo', dur:'7:48', desc:'El muro donde casi todos abandonan. La solución no es fuerza: es anticipación. Ejercicio de 15 minutos incluido.' },
-      ],
-    },
-    {
-      t: 'El ritmo — la mano derecha',
-      k: 'Lo que separa “sé acordes” de “toco canciones”',
-      lecciones: [
-        { id:'l09', t:'Tu primer rasgueo', dur:'6:55', desc:'Abajo-abajo-arriba. Simple, pero es la base de casi todo lo popular.' },
-        { id:'l10', t:'Rasgueos para cientos de canciones', dur:'8:40', desc:'Tres patrones que cubren la mayoría de lo que quieres tocar. Cuándo usar cada uno.' },
-        { id:'l11', t:'Tocar con el metrónomo', dur:'7:20', desc:'Mantener el tiempo es lo que hace que suenes “bien” aunque toques poco. Usamos el metrónomo del sitio.' },
-      ],
-    },
-    {
-      t: 'Tu primera canción',
-      k: 'El momento en que todo hace clic',
-      lecciones: [
-        { id:'l12', t:'Elegir tu primera canción', dur:'5:15', desc:'Cómo saber si una canción está a tu nivel hoy, y dónde encontrar los acordes sin perderte.' },
-        { id:'l13', t:'Cejilla y capo: toca en cualquier tono', dur:'8:05', desc:'El capo es el atajo que te deja tocar canciones “difíciles” desde ya. La cejilla, paso a paso, sin frustrarte.' },
-        { id:'l14', t:'Tocar y cantar al mismo tiempo', dur:'9:30', desc:'El otro gran “no puedo”. Sí puedes: es cuestión de separar las dos tareas y volverlas a juntar, en orden.' },
-      ],
-    },
-    {
-      t: 'Suena mejor',
-      k: 'Del “se entiende” al “qué bonito”',
-      lecciones: [
-        { id:'l15', t:'Limpieza: que no zumben las cuerdas', dur:'6:48', desc:'Por qué zumban y cómo se arregla, cuerda por cuerda. Detalle que cambia por completo cómo te oyes.' },
-        { id:'l16', t:'Dinámica y expresión', dur:'7:10', desc:'Fuerte, suave, pausa. Lo que convierte una secuencia de acordes en música.' },
-        { id:'l17', t:'Del papel a tocar de memoria', dur:'6:25', desc:'Cómo memorizar una canción de verdad, para tocarla sin mirar los acordes.' },
-      ],
-    },
-    {
-      t: 'Sigue creciendo',
-      k: 'Para que esto no se quede en un curso más',
-      lecciones: [
-        { id:'l18', t:'Tu rutina de práctica de 15 minutos', dur:'6:00', desc:'La rutina exacta que te mantiene avanzando sin quemarte. Es el hábito, no el talento, lo que te hace tocar.' },
-        { id:'l19', t:'Qué aprender después + comunidad', dur:'5:35', desc:'Tu mapa para los próximos meses y cómo seguir acompañado para no abandonar.' },
-      ],
-    },
-  ],
+  {
+    t: 'Para empezar — pocos acordes',
+    k: 'Tus primeras canciones, con 3 o 4 acordes',
+    lecciones: [
+      {
+        id: 't01',
+        t: 'Las Mañanitas',
+        dur: '1:34',
+        vid: 'uH4hbW4HKbw',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Las Mañanitas» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't02',
+        t: 'El mamut chiquitito',
+        dur: '1:29',
+        vid: '4lKg4KQzLk8',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «El mamut chiquitito» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't03',
+        t: 'Reto: sacar la intro de oído',
+        dur: '13:28',
+        vid: 'AfO67ZKjbOE',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Reto: sacar la intro de oído» con Doc, al minuto exacto.'
+      }
+    ]
+  },
+  {
+    t: 'Boleros y clásicos',
+    k: 'Julio Jaramillo, José José y los eternos',
+    lecciones: [
+      {
+        id: 't04',
+        t: 'Ayer y hoy — Julio Jaramillo',
+        dur: '2:45',
+        vid: 'urLTAdGyFO0',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Ayer y hoy» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't05',
+        t: 'Nuestro juramento — Julio Jaramillo',
+        dur: '3:00',
+        vid: 'p9Qb7VqC6Jw',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Nuestro juramento» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't06',
+        t: 'Ódiame — Julio Jaramillo',
+        dur: '1:33',
+        vid: 'vwRCcklPtwo',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Ódiame» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't07',
+        t: 'Para ti madrecita — Julio Jaramillo',
+        dur: '1:06',
+        vid: 'NErC68jVoi8',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Para ti madrecita» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't08',
+        t: 'Reloj ingrato — José y el Toro',
+        dur: '2:11',
+        vid: 'BxvuXdhvRhw',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Reloj ingrato» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't09',
+        t: 'El triste — José José',
+        dur: '2:31',
+        vid: 'WZ0WMiwEyPE',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «El triste» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't10',
+        t: 'Cien años — Pedro Infante',
+        dur: '2:09',
+        vid: 'FRX92i8fGI0',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Cien años» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't11',
+        t: 'Me dijeron que te vieron drogada en Brasil — Ozcar Horna',
+        dur: '1:14',
+        vid: 'fjVHQL5u3Wg',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Me dijeron que te vieron drogada en Brasil» con Doc, al minuto exacto.'
+      }
+    ]
+  },
+  {
+    t: 'Baladas y pop',
+    k: 'De Jesse y Joy a Soda Stereo',
+    lecciones: [
+      {
+        id: 't12',
+        t: 'Dueles — Jesse y Joy',
+        dur: '1:46',
+        vid: 'GaNwd74lfu4',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Dueles» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't13',
+        t: 'Beso — Josean Log',
+        dur: '1:31',
+        vid: 'ornii9BTQB8',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Beso» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't14',
+        t: 'Traición — Alex Ponce',
+        dur: '1:31',
+        vid: 'qTqg1Bpo94Q',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Traición» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't15',
+        t: 'Coqueta — Heredero',
+        dur: '1:16',
+        vid: 'cz5CBL8N9xg',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Coqueta» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't16',
+        t: 'First Love',
+        dur: '1:27',
+        vid: 'KRdxNVlGQeg',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «First Love» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't17',
+        t: 'Besos en guerra — Morat x Juanes',
+        dur: '1:48',
+        vid: '0LlwPa_SRsg',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Besos en guerra» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't18',
+        t: 'De música ligera — Soda Stereo',
+        dur: '1:48',
+        vid: 'g9QHumKdifs',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «De música ligera» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't19',
+        t: 'Cama y mesa — Roberto Carlos',
+        dur: '1:59',
+        vid: '0A6fts5ylQc',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Cama y mesa» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't20',
+        t: 'Te amo y más — The Book of Life',
+        dur: '3:04',
+        vid: 'becfgrd2fPI',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Te amo y más» con Doc, al minuto exacto.'
+      }
+    ]
+  },
+  {
+    t: 'Ranchera y regional',
+    k: 'Vicente, mariachi y sabor mexicano',
+    lecciones: [
+      {
+        id: 't21',
+        t: 'Amor Salvaje — Chaqueño Palavecino',
+        dur: '1:31',
+        vid: 'ftvKCq87W8I',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Amor Salvaje» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't22',
+        t: 'Cuando cuando — José y el Toro',
+        dur: '2:00',
+        vid: 'Nu1LGNtUjTE',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Cuando cuando» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't23',
+        t: 'A la sombra de mi madre — Leo Dan',
+        dur: '1:08',
+        vid: 'p9-WpOjEAfw',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «A la sombra de mi madre» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't24',
+        t: 'Cuando quería ser grande — Vicente Fernández',
+        dur: '1:30',
+        vid: 'gq6HxXRQAzs',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Cuando quería ser grande» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't25',
+        t: 'Canción del Mariachi (Desperado) — Antonio Banderas',
+        dur: '1:33',
+        vid: 'tx4cDSsBnuA',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Canción del Mariachi (Desperado)» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't26',
+        t: 'El Malo — Manuel Lizarazo',
+        dur: '1:12',
+        vid: 'JieHqBO0jZc',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «El Malo» con Doc, al minuto exacto.'
+      },
+      {
+        id: 't27',
+        t: 'Juyayay — Jayac',
+        dur: '2:00',
+        vid: 'DVx5rqjUDWg',
+        desc: 'Acordes, ritmo y el paso a paso para tocar «Juyayay» con Doc, al minuto exacto.'
+      }
+    ]
+  }
+],
 };
 
 /* Lista plana para anterior/siguiente y progreso. */
@@ -185,7 +343,7 @@ function buildNav() {
 
 /* ============================ VISTAS ============================ */
 function route() {
-  const m = location.hash.match(/^#\/l\/(l\d+)/);
+  const m = location.hash.match(/^#\/l\/([\w-]+)/);
   if (m && idx(m[1]) !== -1) viewLesson(m[1]);
   else viewDashboard();
   renderProgressTop();
@@ -291,12 +449,10 @@ function viewLesson(id) {
       <p class="l-crumb">${esc(mod.t)} · Lección ${num} de ${TOTAL}</p>
       <h1 class="l-title">${esc(l.t)}</h1>
 
-      <div class="l-video" role="img" aria-label="Video de la lección: ${esc(l.t)}">
-        <div class="lv-inner">
-          <button class="lv-play" type="button" aria-label="Reproducir (video de ejemplo)"><span>▶</span></button>
-          <p class="lv-note">Video de la lección · ${l.dur}</p>
-        </div>
-        <span class="lv-badge">Ejemplo — aquí va el video real del curso</span>
+      <div class="l-video" data-vid="${l.vid}">
+        <img class="lv-thumb" src="https://img.youtube.com/vi/${l.vid}/hqdefault.jpg" alt="Tutorial de Doc: ${esc(l.t)}" loading="lazy">
+        <button class="lv-play" type="button" aria-label="Reproducir el tutorial de Doc"><span>▶</span></button>
+        <span class="lv-dur">${l.dur}</span>
       </div>
 
       <div class="l-body">
@@ -317,8 +473,8 @@ function viewLesson(id) {
             <div class="lt-head"><span class="lt-av"><img src="assets/img/joy.jpg" alt="" width="36" height="36"></span>
               <div><b>Tutor de Doc</b><span class="lt-on">● En línea 24/7</span></div>
             </div>
-            <p class="lt-txt">¿Se te traba algo de esta lección? Pregúntale al tutor y te lleva al minuto exacto donde Doc lo explica.</p>
-            <button class="btn btn-line btn-sm" id="tutorBtn" type="button">Preguntarle al tutor</button>
+            <p class="lt-txt">¿Se te traba algo de <b>${esc(l.t.split(' — ')[0])}</b>? Pregúntale al tutor de este tutorial y te lleva al minuto exacto donde Doc lo explica.</p>
+            <button class="btn btn-line btn-sm" id="tutorBtn" type="button">Preguntar sobre este tutorial</button>
           </div>
 
           <div class="l-practice">
@@ -341,7 +497,16 @@ function viewLesson(id) {
     if (willBeDone && next) { location.hash = `#/l/${next.id}`; }
     else viewLesson(id);
   });
-  $('#tutorBtn').addEventListener('click', () => { if (window.docBotOpen) window.docBotOpen({ lesson: l.t }); });
+  // Click-to-play: carga el iframe de YouTube solo al tocar (rápido y liviano).
+  const lv = $('.l-video');
+  if (lv) lv.addEventListener('click', () => {
+    lv.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${l.vid}?autoplay=1&rel=0&modestbranding=1" title="${esc(l.t)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    lv.classList.add('is-playing');
+  }, { once: true });
+
+  // Tutor SCOPED: solo responde sobre ESTE tutorial (su video). El flotante global
+  // (abajo-derecha) sigue respondiendo sobre todo.
+  $('#tutorBtn').addEventListener('click', () => { if (window.docBotOpen) window.docBotOpen({ video: l.vid, title: l.t }); });
   $('#lpBtn').addEventListener('click', e => { practiceToday(); e.target.textContent = '✓ Práctica registrada'; e.target.disabled = true; e.target.classList.replace('btn-gold', 'btn-line'); });
 }
 

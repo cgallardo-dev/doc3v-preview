@@ -179,6 +179,14 @@
 .lv-play span{margin-left:4px}
 .lv-play:hover{transform:scale(1.06);background:rgba(200,136,42,.24)}
 .lv-note{color:var(--cream-45);font-size:13px;margin-top:14px;letter-spacing:.04em}
+/* Video REAL: miniatura de YouTube -> iframe al tocar (rápido y liviano) */
+.l-video{cursor:pointer}
+.lv-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform .3s var(--ease),filter .2s}
+.l-video:hover .lv-thumb{transform:scale(1.03);filter:brightness(.82)}
+.lv-play{position:relative;z-index:2}
+.lv-dur{position:absolute;right:10px;bottom:10px;z-index:2;background:rgba(10,10,12,.82);color:var(--cream);font-size:12px;font-weight:600;padding:3px 9px;border-radius:12px}
+.l-video.is-playing{cursor:default}
+.l-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3}
 .lv-badge{position:absolute;top:12px;left:12px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
   color:var(--cream-70);background:rgba(10,10,12,.7);border:1px solid var(--line-2);border-radius:6px;padding:5px 9px}
 

@@ -91,12 +91,17 @@
   var fab = root.querySelector('.docbot-fab');
   var panel = root.querySelector('.docbot-panel');
   var nudge = root.querySelector('.docbot-nudge');
+  var whoSub = root.querySelector('.docbot-who span');
   var log = root.querySelector('#docbotLog');
   var chipsBox = root.querySelector('#docbotChips');
   var form = root.querySelector('#docbotForm');
   var input = root.querySelector('#docbotInput');
   var sendBtn = root.querySelector('#docbotSend');
   var busy = false, greeted = false;
+  var scopeVideo = '';   // si está en modo tutorial, solo pregunta sobre ese video
+
+  // Preguntas genéricas para el modo tutorial (no dependen de la canción).
+  var SCOPED_CHIPS = ['¿Qué acordes lleva?', '¿Cómo es el rasgueo?', '¿Lleva cejilla?', '¿Por dónde empiezo?'];
 
   function scrollLog() { log.scrollTop = log.scrollHeight; }
   function addUser(t) { var d = document.createElement('div'); d.className = 'dm user'; d.textContent = t; log.appendChild(d); scrollLog(); }
@@ -118,7 +123,8 @@
     var ctrl = new AbortController(), settled = false;
     var timer = setTimeout(function () { ctrl.abort(); }, API_TIMEOUT);
     function fin(r) { if (settled) return; settled = true; clearTimeout(timer); done(r); }
-    fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q, q: q }), signal: ctrl.signal })
+    var payload = scopeVideo ? { question: q, q: q, video: scopeVideo } : { question: q, q: q };
+    fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal })
       .then(function (r) { if (!r.ok) throw 0; return r.json(); })
       .then(function (d) { if (!d || typeof d.text !== 'string' || !d.text) throw 0; fin(d); })
       .catch(function () { fin(null); });
@@ -138,7 +144,11 @@
     fetchAnswer(q, function (res) {
       setTimeout(function () {
         clearTimeout(tt); if (tp && tp.parentNode) tp.parentNode.removeChild(tp);
-        var out = res || fallback || curatedFor(q);
+        // En modo tutorial NO se usa el curado general (respondería otra canción):
+        // si la API no está, se dice que no está disponible.
+        var out = res || fallback || (scopeVideo
+          ? { gate: true, text: 'Ahora mismo no puedo revisar este tutorial. Inténtalo de nuevo en unos segundos.' }
+          : curatedFor(q));
         addBot(out.text, out.gate ? null : out.cite);
         setBusy(false);
       }, Math.max(0, minw - (Date.now() - t0)));
@@ -147,22 +157,40 @@
 
   function renderChips() {
     chipsBox.innerHTML = '';
-    QA.forEach(function (item) {
-      var c = document.createElement('button'); c.className = 'dm-chip'; c.type = 'button'; c.textContent = item.q;
-      c.addEventListener('click', function () { send(item.q, curatedRes(item)); });
-      chipsBox.appendChild(c);
-    });
+    if (scopeVideo) {                         // modo tutorial: preguntas genéricas de la canción
+      SCOPED_CHIPS.forEach(function (qtext) {
+        var c = document.createElement('button'); c.className = 'dm-chip'; c.type = 'button'; c.textContent = qtext;
+        c.addEventListener('click', function () { send(qtext); });
+        chipsBox.appendChild(c);
+      });
+    } else {                                  // modo general: ejemplos con canciones reales
+      QA.forEach(function (item) {
+        var c = document.createElement('button'); c.className = 'dm-chip'; c.type = 'button'; c.textContent = item.q;
+        c.addEventListener('click', function () { send(item.q, curatedRes(item)); });
+        chipsBox.appendChild(c);
+      });
+    }
   }
 
-  function greet(ctx) {
+  function greet(title) {
     if (greeted) return; greeted = true;
-    addBot('¡Hola! Soy el tutor de Doc. ' + (ctx ? 'Veo que estás en “' + esc(ctx) + '”. ' : '') + 'Pregúntame lo que se te trabe y te llevo al minuto exacto donde él lo explica. 🎸', null);
+    if (scopeVideo) {
+      var song = title ? '“' + esc(String(title).split(' — ')[0]) + '”' : 'este tutorial';
+      addBot('¡Hola! Soy el tutor de ' + song + '. Pregúntame lo que se te trabe de esta canción y te llevo al minuto exacto donde Doc lo explica. 🎸 (Solo respondo sobre este tutorial.)', null);
+    } else {
+      addBot('¡Hola! Soy el tutor de Doc. Pregúntame lo que se te trabe de cualquier canción y te llevo al minuto exacto donde él lo explica. 🎸', null);
+    }
     renderChips();
   }
 
   function open(ctx) {
+    ctx = ctx || {};
+    var newScope = ctx.video || '';
+    // Si cambió el scope (o es la primera vez), reinicia la conversación.
+    if (newScope !== scopeVideo || !greeted) { scopeVideo = newScope; greeted = false; log.innerHTML = ''; }
     panel.hidden = false; fab.setAttribute('aria-expanded', 'true'); root.classList.add('is-open'); nudge.hidden = true;
-    greet(ctx && ctx.lesson);
+    if (whoSub) whoSub.textContent = scopeVideo ? '● Solo sobre este tutorial' : '● En línea · cita el minuto exacto';
+    greet(ctx.title);
     setTimeout(function () { input.focus(); }, reduce ? 0 : 180);
   }
   function close() { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); root.classList.remove('is-open'); }
