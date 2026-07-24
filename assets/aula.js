@@ -235,21 +235,38 @@ const idx = id => LECCIONES.findIndex(l => l.id === id);
 const moduloDe = id => CURSO.modulos.find(m => m.lecciones.some(l => l.id === id));
 
 /* ============================ ESTADO (localStorage) ============================ */
+/* A prueba de webviews: el navegador interno de Instagram y el modo incógnito pueden
+   bloquear localStorage. Si falla, todo vive en memoria: el progreso no persiste,
+   pero el aula FUNCIONA — jamás una pantalla negra por un setter que revienta. */
+const storage = (() => {
+  try {
+    const t = '__doc3v_test';
+    localStorage.setItem(t, '1'); localStorage.removeItem(t);
+    return localStorage;
+  } catch (e) {
+    const mem = {};
+    return {
+      getItem: k => (k in mem ? mem[k] : null),
+      setItem: (k, v) => { mem[k] = String(v); },
+      removeItem: k => { delete mem[k]; },
+    };
+  }
+})();
 const LS = {
   session: 'doc3v_session',
   done: 'doc3v_progress',
   streak: 'doc3v_streak',
 };
 const store = {
-  get session() { try { return JSON.parse(localStorage.getItem(LS.session)); } catch { return null; } },
-  set session(v) { localStorage.setItem(LS.session, JSON.stringify(v)); },
-  clearSession() { localStorage.removeItem(LS.session); },
+  get session() { try { return JSON.parse(storage.getItem(LS.session)); } catch { return null; } },
+  set session(v) { storage.setItem(LS.session, JSON.stringify(v)); },
+  clearSession() { storage.removeItem(LS.session); },
 
-  get done() { try { return new Set(JSON.parse(localStorage.getItem(LS.done)) || []); } catch { return new Set(); } },
-  set done(set) { localStorage.setItem(LS.done, JSON.stringify([...set])); },
+  get done() { try { return new Set(JSON.parse(storage.getItem(LS.done)) || []); } catch { return new Set(); } },
+  set done(set) { storage.setItem(LS.done, JSON.stringify([...set])); },
 
-  get streak() { try { return JSON.parse(localStorage.getItem(LS.streak)) || { n:0, last:null }; } catch { return { n:0, last:null }; } },
-  set streak(v) { localStorage.setItem(LS.streak, JSON.stringify(v)); },
+  get streak() { try { return JSON.parse(storage.getItem(LS.streak)) || { n:0, last:null }; } catch { return { n:0, last:null }; } },
+  set streak(v) { storage.setItem(LS.streak, JSON.stringify(v)); },
 };
 
 const todayKey = () => new Date().toISOString().slice(0, 10);
@@ -535,7 +552,7 @@ function wireChrome() {
   $('#logoutBtn').addEventListener('click', () => { store.clearSession(); location.replace('acceso.html'); });
   $('#resetBtn').addEventListener('click', () => {
     if (confirm('¿Reiniciar tu progreso y tu racha? Esto no borra tu acceso.')) {
-      localStorage.removeItem(LS.done); localStorage.removeItem(LS.streak);
+      storage.removeItem(LS.done); storage.removeItem(LS.streak);
       renderStreak(); route();
     }
   });
@@ -544,7 +561,7 @@ function wireChrome() {
 /* ============================ ARRANQUE ============================ */
 /* El aula vive DETRÁS del portón: sin sesión, de vuelta a acceso.html (patrón NotorAI). */
 window.addEventListener('hashchange', () => { if (!$('#app').hidden) route(); });
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { try {
   const params = new URLSearchParams(location.search);
   const demoMode = params.has('demo');   // aula.html?demo[=<idLeccion>] -> abre-y-prueba
 
@@ -555,8 +572,16 @@ document.addEventListener('DOMContentLoaded', () => {
     store.session = { email: 'invitado@demo.doc3v', name: 'Invitado', via: 'demo-link', plan: 'free', ts: Date.now() };
   }
 
+  // Si viene desde acceso.html pero la sesión no sobrevivió el salto (webview de
+  // Instagram / incógnito), entra igual: jamás un rebote en bucle ni pantalla negra.
+  const desdeAcceso = params.get('via') === 'acceso' || /acceso\.html/.test(document.referrer);
+  if (!store.session && desdeAcceso) {
+    store.session = { email: 'invitado@demo.doc3v', name: 'Alumno', via: 'acceso-sin-storage', plan: 'free', ts: Date.now() };
+  }
+
   if (!store.session) { location.replace('acceso.html'); return; }
   $('#app').hidden = false;
+  const bs = document.getElementById('bootSafe'); if (bs) bs.hidden = true;
   bootApp();
 
   if (demoMode) {
@@ -568,4 +593,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // abrir el tutor de ESE tutorial una vez pintada la lección
     setTimeout(() => { if (window.docBotOpen) window.docBotOpen({ video: les.vid, title: les.t }); }, 450);
   }
-});
+} catch (e) { if (window.__aulaBootFail) window.__aulaBootFail(e); } });

@@ -89,7 +89,9 @@
 
   function enter(sess) {
     try { localStorage.setItem('doc3v_session', JSON.stringify(sess)); } catch (e) {}
-    location.href = 'aula.html';
+    // via=acceso: si el almacenamiento está bloqueado (webview de Instagram, incógnito),
+    // el aula igual te deja entrar como invitado en vez de rebotarte aquí en bucle.
+    location.href = 'aula.html?via=acceso';
   }
 
   fL.addEventListener('submit', function (e) {

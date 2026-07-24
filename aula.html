@@ -14,6 +14,29 @@
 </head>
 <body class="app-body-root">
 
+<!-- Red de seguridad: si el aula no logra arrancar (error de JS, webview restrictivo),
+     esto aparece en vez de una pantalla negra. aula.js lo oculta al arrancar bien. -->
+<div id="bootSafe" hidden style="min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center">
+  <div style="max-width:340px">
+    <p style="font-size:17px;font-weight:700;margin-bottom:8px">El aula tardó en cargar.</p>
+    <p style="font-size:14px;opacity:.75;margin-bottom:18px">Suele resolverse recargando. Si estás dentro de Instagram, ábrelo mejor en tu navegador (⋯ → Abrir en Chrome/Safari).</p>
+    <p><a href="aula.html?via=acceso" style="display:inline-block;padding:12px 18px;border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;font-weight:700">Recargar el aula</a></p>
+    <p style="margin-top:10px"><a href="index.html" style="color:inherit;opacity:.7">← Volver al sitio</a></p>
+  </div>
+</div>
+<noscript>
+  <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center">
+    <p>El aula necesita JavaScript activado. <a href="index.html" style="color:inherit">← Volver al sitio</a></p>
+  </div>
+</noscript>
+<script>
+  window.__aulaBootFail = function () { var s = document.getElementById('bootSafe'); if (s) s.hidden = false; };
+  setTimeout(function () {
+    var app = document.getElementById('app');
+    if (app && app.hidden) window.__aulaBootFail();
+  }, 5000);
+</script>
+
 <!-- ============ LA APP (detrás del portón: acceso.html) ============ -->
 <div id="app" hidden>
   <header class="app-bar">
