@@ -187,9 +187,9 @@ function cacheKey(q) { return q.toLowerCase().replace(/\s+/g, ' ').trim(); }
 
 function cacheGet(q) { return CACHE.get(cacheKey(q)) || null; }
 
-function cachePut(q, val) {
+function cachePut(k, val) {
   if (CACHE.size >= CACHE_MAX) CACHE.delete(CACHE.keys().next().value);
-  CACHE.set(cacheKey(q), val);
+  CACHE.set(cacheKey(k), val);
 }
 
 // OJO: esto NO es un rate limit de verdad. Cada invocación puede caer en un
@@ -336,12 +336,14 @@ module.exports = async function handler(req, res) {
   // req.body es un GETTER: si el JSON viene malformado, ACCEDER lanza excepción.
   // La lectura de los campos va DENTRO del mismo try para que ningún acceso
   // inesperado convierta un 400 limpio en un 500 feo.
-  var q = '';
+  var q = '', video = '';
   try {
     var body = req.body;
     if (typeof body === 'string') body = JSON.parse(body || '{}');
     if (body && typeof body.q === 'string') q = body.q;
     else if (body && typeof body.question === 'string') q = body.question;
+    // Scope opcional: un videoId (11 chars). Sanitizado a [\w-] para no confiar en el cliente.
+    if (body && typeof body.video === 'string') video = body.video.replace(/[^\w-]/g, '').slice(0, 24);
     q = q.trim();
   } catch (e) {
     return fail(res, 400, 'bad_json');
@@ -350,12 +352,16 @@ module.exports = async function handler(req, res) {
   if (!q) return fail(res, 400, 'empty_query');
   if (q.length > MAX_QUESTION_CHARS) return fail(res, 400, 'too_long');
 
+  // La clave de caché incluye el scope: la respuesta del tutor de un video NO debe
+  // servirse para una pregunta general (ni al revés).
+  var ckey = video ? video + '::' + q : q;
+
   if (!INDEX || !INDEX.chunks || !INDEX.chunks.length) return fail(res, 503, 'unavailable');
 
   var key = process.env.OPENAI_API_KEY;
   if (!key) return fail(res, 503, 'unavailable');
 
-  var cached = cacheGet(q);
+  var cached = cacheGet(ckey);
   if (cached) return res.status(200).json(cached);
 
   var creator = INDEX.creator || 'este creador';
@@ -365,7 +371,7 @@ module.exports = async function handler(req, res) {
   var rapida = respuestaRapida(q, creator);
   if (rapida) {
     var quick = { gate: false, score: 1, text: rapida };
-    cachePut(q, quick);
+    cachePut(ckey, quick);
     return res.status(200).json(quick);
   }
 
@@ -373,9 +379,18 @@ module.exports = async function handler(req, res) {
     // 1) embedding de la pregunta
     var qemb = await embed(q, key);
 
-    // 2) coseno contra todos los fragmentos -> top K (orden estable, igual que
+    // Bot SCOPED a un tutorial: si viene `video`, solo se busca en los fragmentos
+    // de ESE video, así el tutor de la lección responde SOLO sobre esa canción.
+    // Combinado con el gate + NO_TENGO, preguntar por otra canción -> deriva.
+    var pool = INDEX.chunks;
+    if (video) {
+      var only = INDEX.chunks.filter(function (c) { return videoId(c.source || '') === video; });
+      if (only.length) pool = only;   // id inexistente en el índice -> no restringe (defensivo)
+    }
+
+    // 2) coseno contra los fragmentos del pool -> top K (orden estable, igual que
     //    el sorted() de Python: los empates conservan el orden original).
-    var scored = INDEX.chunks.map(function (c) { return { c: c, s: cosine(qemb, c.emb) }; });
+    var scored = pool.map(function (c) { return { c: c, s: cosine(qemb, c.emb) }; });
     scored.sort(function (a, b) { return b.s - a.s; });
     var top = scored.slice(0, TOP_K).map(function (x) { return x.c; });
     var best = top.length ? scored[0].s : 0;
@@ -393,7 +408,7 @@ module.exports = async function handler(req, res) {
         text: 'Eso todavía no está en los videos que tengo de ' + creator + ', y prefiero no inventarte nada.' +
           (temasDisponibles() ? ' Lo que sí puedo enseñarte paso a paso es ' + temasDisponibles() + ' — pregúntame por cualquiera.' : '')
       };
-      cachePut(q, gated);
+      cachePut(ckey, gated);
       return res.status(200).json(gated);
     }
 
@@ -452,7 +467,7 @@ module.exports = async function handler(req, res) {
         text: 'Eso no lo cubren los videos que tengo de ' + creator + ', y prefiero no inventarte nada.' +
           (temasDisponibles() ? ' Pregúntame por ' + temasDisponibles() + ' y te llevo al minuto exacto.' : '')
       };
-      cachePut(q, gated2);
+      cachePut(ckey, gated2);
       return res.status(200).json(gated2);
     }
 
@@ -487,7 +502,7 @@ module.exports = async function handler(req, res) {
         thumb: vid ? 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg' : ''
       }
     };
-    cachePut(q, out);
+    cachePut(ckey, out);
     return res.status(200).json(out);
 
   } catch (e) {
