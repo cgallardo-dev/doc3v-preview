@@ -62,7 +62,7 @@
 <script>
 (function () {
   var qs = new URLSearchParams(location.search);
-  var wantReg = qs.get('tab') === 'registro' || location.hash === '#registro';
+  var wantReg = qs.get('tab') === 'registro' || location.hash === '#registro' || qs.get('plan') === 'free';
   var tabL = document.getElementById('tabLogin'), tabR = document.getElementById('tabReg');
   var fL = document.getElementById('formLogin'), fR = document.getElementById('formReg');
 
@@ -75,6 +75,17 @@
   tabL.addEventListener('click', function () { show(false); });
   tabR.addEventListener('click', function () { show(true); });
   if (wantReg) show(true);
+
+  // Cuando llega por "Probar gratis", el registro se enmarca como prueba gratis:
+  // honesto, NO le decimos que accede al "curso completo".
+  if (qs.get('plan') === 'free') {
+    var fh = document.querySelector('#formReg .gate-h');
+    var fs = document.querySelector('#formReg .gate-sub');
+    var fb = document.querySelector('#formReg button[type="submit"]');
+    if (fh) fh.textContent = 'Crea tu cuenta gratis';
+    if (fs) fs.textContent = 'Accede gratis a los videos y al tutor. Sin tarjeta, solo tu correo.';
+    if (fb) fb.textContent = 'Entrar gratis';
+  }
 
   function enter(sess) {
     try { localStorage.setItem('doc3v_session', JSON.stringify(sess)); } catch (e) {}
@@ -97,7 +108,7 @@
     var pass = document.getElementById('rPass').value.trim();
     var err = document.getElementById('rErr');
     if (!name || !email || !pass) { err.textContent = 'Completa todos los campos.'; err.hidden = false; return; }
-    enter({ email: email, name: name, via: 'registro', ts: Date.now() });
+    enter({ email: email, name: name, via: 'registro', plan: qs.get('plan') === 'free' ? 'free' : 'full', ts: Date.now() });
   });
 
   document.getElementById('demoEnter').addEventListener('click', function () {

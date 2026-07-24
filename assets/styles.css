@@ -263,10 +263,15 @@ section{padding:88px 0}
 .bot-note{text-align:center;color:var(--cream-45);font-size:13.5px;margin-top:22px}
 
 /* precio */
-.price-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:44px;align-items:stretch}
+.price-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:18px;margin-top:44px;align-items:stretch}
 .price-main{border:1px solid var(--gold);border-radius:16px;background:linear-gradient(180deg,rgba(200,136,42,.1),var(--panel));padding:34px 32px;display:flex;flex-direction:column;gap:6px}
 .price-side{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:34px 32px;display:flex;flex-direction:column;gap:8px}
 .badge{align-self:flex-start;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--gold);font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:8px}
+.badge-free{background:var(--green)}
+.free-line{font-size:13.5px;color:var(--cream-70)}
+.price-alt{margin-top:22px;text-align:center;font-size:14px;color:var(--cream-70)}
+.price-alt a{color:var(--gold-bright);font-weight:600}
+.price-alt span{color:var(--cream-45)}
 .pn{font-family:'Barlow C',var(--sans);text-transform:uppercase;font-weight:700;font-size:23px;line-height:1}
 .pn2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-45);font-weight:700}
 .price-row{display:flex;align-items:baseline;gap:14px;margin:8px 0 2px}

@@ -28,10 +28,10 @@
       <a href="#musica">Música</a>
       <a href="#tutor">Tutor 24/7</a>
       <a href="#precio">Curso</a>
-      <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
+      <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="acceso.html">Iniciar sesión</a><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
     </nav>
     <!-- Deslogueado: Iniciar sesión (a nuestra app) + Comprar (a Hotmart, la caja). Con sesión, el script de abajo lo cambia por el menú de cuenta (patrón NotorAI). -->
-    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html">Iniciar sesión</a><a class="btn btn-gold btn-sm" href="#precio">Comprar el curso</a></div>
+    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html?tab=registro&amp;plan=free">Probar gratis</a><a class="btn btn-gold btn-sm" href="#precio">Comprar el curso</a></div>
   </div>
 </header>
 
@@ -129,8 +129,23 @@
   <!-- PRECIO (única vez en todo el sitio) -->
   <section class="band" id="precio">
     <div class="wrap">
-      <div class="reveal center" style="max-width:52ch"><div class="sec-head center"><h2>Un curso. Un pago. <span class="g">De por vida.</span></h2><p>Sin mensualidades y sin letra chica. Esto es exactamente lo que recibes.</p></div></div>
+      <div class="reveal center" style="max-width:52ch"><div class="sec-head center"><h2>Empieza gratis. <span class="g">Avanza con el curso.</span></h2><p>Prueba el aula sin pagar nada. Cuando quieras el método completo, es un solo pago de por vida — sin mensualidades ni letra chica.</p></div></div>
       <div class="price-grid reveal">
+        <!-- PLAN GRATIS: crea la cuenta (captura el correo) y entra a la app -->
+        <div class="price-side">
+          <span class="badge badge-free">Gratis · sin tarjeta</span>
+          <p class="pn">Prueba el aula</p>
+          <div class="price-row"><span class="now">$0</span></div>
+          <p class="free-line">Crea tu cuenta y entra a probar cómo enseña Doc. Sin pagar nada.</p>
+          <ul>
+            <li>Videos gratis para arrancar</li>
+            <li>Tutor 24/7 (10 preguntas): te lleva al minuto exacto</li>
+            <li>Tu progreso y tu racha, guardados</li>
+          </ul>
+          <a class="btn btn-line" href="acceso.html?tab=registro&amp;plan=free">Probar gratis →</a>
+          <p class="pays">Sin tarjeta. Solo tu correo.</p>
+        </div>
+        <!-- CURSO COMPLETO: el pago sigue en Hotmart (la caja) -->
         <div class="price-main">
           <span class="badge">Oferta de julio · 54% OFF</span>
           <p class="pn">Curso completo de guitarra</p>
@@ -139,27 +154,15 @@
           <ul>
             <li>19 lecciones en video, a tu ritmo</li>
             <li>Método digital incluido (valor $20, gratis)</li>
+            <li><b>Tutor 24/7 sin límite</b> de preguntas</li>
             <li>Dudas respondidas a diario por Doc</li>
-            <li>Para principiantes absolutos y adultos sin experiencia</li>
           </ul>
-          <!-- El pago sigue en Hotmart (la caja). TODO: reemplazar por el link de checkout de Hotmart de Doc. -->
+          <!-- TODO Doc: reemplazar href="#" por el link de checkout de Hotmart de Doc. -->
           <a class="btn btn-gold" href="#" data-hotmart>Empezar hoy — riesgo cero</a>
           <p class="guarantee">🛡 Garantía total de 7 días, 100% sin preguntas. Pago seguro con Hotmart.</p>
         </div>
-        <aside class="price-side">
-          <p class="pn2">¿Solo quieres la guía?</p>
-          <p class="pn">Método Doc 3V</p>
-          <div class="price-row2"><span class="was">$20</span><span class="now2">$9.99<small> USD</small></span></div>
-          <p>La guía digital descargable con toda la metodología. No necesitas el curso.</p>
-          <ul>
-            <li>Descarga inmediata</li>
-            <li>Acordes, ritmos y canciones reales</li>
-            <li>Tuyo para siempre, sin mensualidad</li>
-          </ul>
-          <a class="btn btn-line" href="#">Descargar el método</a>
-          <p class="pays">Visa · Mastercard · PayPal · Amex · Oxxo</p>
-        </aside>
       </div>
+      <p class="price-alt reveal">¿Solo quieres la guía digital? <b>Método Doc 3V · $9.99</b> <span>(de $20, descarga inmediata)</span> — <a href="#" data-hotmart-metodo>descargar →</a></p>
       <div class="fit reveal">
         <div class="fit-col yes"><h4>Este curso es para ti si…</h4><ul><li>Empiezas desde cero</li><li>Eres adulto sin experiencia</li><li>Tienes 8 años o más</li><li>Hablas español, de cualquier país</li></ul></div>
         <div class="fit-col no"><h4>No es para ti si…</h4><ul><li>Buscas teoría avanzada desde el primer día</li><li>Ya tocas con fluidez y quieres nivel profesional</li><li>No vas a practicar al menos 15 minutos al día</li></ul></div>
