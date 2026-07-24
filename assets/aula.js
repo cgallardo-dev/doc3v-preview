@@ -319,7 +319,6 @@ function viewLesson(id) {
             </div>
             <p class="lt-txt">¿Se te traba algo de esta lección? Pregúntale al tutor y te lleva al minuto exacto donde Doc lo explica.</p>
             <button class="btn btn-line btn-sm" id="tutorBtn" type="button">Preguntarle al tutor</button>
-            <p class="lt-mini" id="tutorMini" hidden>Se abrirá en tu WhatsApp con el tutor entrenado en el curso. <em>(Se conecta en producción.)</em></p>
           </div>
 
           <div class="l-practice">
@@ -342,7 +341,7 @@ function viewLesson(id) {
     if (willBeDone && next) { location.hash = `#/l/${next.id}`; }
     else viewLesson(id);
   });
-  $('#tutorBtn').addEventListener('click', () => { $('#tutorMini').hidden = false; });
+  $('#tutorBtn').addEventListener('click', () => { if (window.docBotOpen) window.docBotOpen({ lesson: l.t }); });
   $('#lpBtn').addEventListener('click', e => { practiceToday(); e.target.textContent = '✓ Práctica registrada'; e.target.disabled = true; e.target.classList.replace('btn-gold', 'btn-line'); });
 }
 
