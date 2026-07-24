@@ -31,8 +31,20 @@
       <div class="more"><button type="button" aria-haspopup="true">Más ▾</button><div class="more-menu"><a href="acceso.html">Iniciar sesión</a><a href="historia.html">Mi historia</a><a href="contratar.html">Contratar</a><a href="blog.html">Blog</a></div></div>
     </nav>
     <!-- Deslogueado: Iniciar sesión (a nuestra app) + Comprar (a Hotmart, la caja). Con sesión, el script de abajo lo cambia por el menú de cuenta (patrón NotorAI). -->
-    <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html?tab=registro&amp;plan=free">Probar gratis</a><a class="btn btn-gold btn-sm" href="#precio">Comprar el curso</a></div>
+    <div class="hdr-right">
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+      <div class="hdr-cta" id="hdrCta"><a class="btn btn-line btn-sm" href="acceso.html?tab=registro&amp;plan=free">Probar gratis</a><a class="btn btn-gold btn-sm" href="#precio">Comprar<span class="lg-only"> el curso</span></a></div>
+    </div>
   </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menú móvil" hidden>
+    <a href="#aprende">Aprende</a>
+    <a href="#musica">Música</a>
+    <a href="#tutor">Tutor 24/7</a>
+    <a href="#precio">Curso</a>
+    <a href="historia.html">Mi historia</a>
+    <a href="acceso.html">Iniciar sesión</a>
+    <a class="btn btn-gold" href="acceso.html?tab=registro&amp;plan=free">Probar gratis</a>
+  </nav>
 </header>
 
 <main>
@@ -238,6 +250,17 @@
     btn.addEventListener('click', function (e) { e.stopPropagation(); var open = menu.hidden; menu.hidden = !open; btn.setAttribute('aria-expanded', String(open)); });
     document.addEventListener('click', function (e) { if (!e.target.closest('#acct')) { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
     document.getElementById('acctLogout').addEventListener('click', function () { try { localStorage.removeItem('doc3v_session'); } catch (e) {} location.reload(); });
+  })();
+
+  /* Menú móvil (hamburguesa). Script propio: siempre corre, con o sin sesión. */
+  (function () {
+    var t = document.querySelector('.nav-toggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function set(open) { m.hidden = !open; t.setAttribute('aria-expanded', String(open)); }
+    t.addEventListener('click', function (e) { e.stopPropagation(); set(m.hidden); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('#mobileMenu') && !e.target.closest('.nav-toggle')) set(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1040) set(false); });
   })();
 </script>
 </body>
