@@ -79,5 +79,9 @@
 }
 @media (max-width: 520px) {
   .docbot { right: 16px; bottom: 16px; }
-  .docbot-panel { right: 0; left: 0; bottom: 0; width: 100%; max-width: 100%; max-height: 82vh; border-radius: 18px 18px 0 0; }
+  .docbot-panel { right: 0; left: 0; bottom: 0; width: 100%; max-width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0; }
+  .docbot-log { padding: 12px 10px; gap: 8px; }
+  .dm { font-size: 13.5px; padding: 9px 12px; max-width: 90%; }
+  .docbot-chips { padding: 0 10px 8px; }
+  .docbot-ask { padding: 10px 10px; }
 }
